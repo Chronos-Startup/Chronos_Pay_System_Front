@@ -1,19 +1,6 @@
-import { stylesStatus } from "../constants/mpErrorTranslate";
+import { labels, stylesStatus } from "../constants/constants";
 
-const labels: Record<keyof typeof stylesStatus, string> = {
-  approved: "Aprovado",
-  pending: "Pendente",
-  in_process: "Em análise",
-  authorized: "Autorizado",
 
-  rejected: "Rejeitado",
-  charged_back: "Chargeback",
-
-  refunded: "Estornado",
-  cancelled: "Cancelado",
-
-  in_mediation: "Em disputa",
-};
 
 type Status = keyof typeof stylesStatus;
 

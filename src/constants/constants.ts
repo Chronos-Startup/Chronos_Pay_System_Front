@@ -57,3 +57,24 @@ export const stylesStatus = {
 
     in_mediation: "bg-purple-900/40 text-purple-400 border-purple-500/30",
 } as const;
+
+export const labels: Record<keyof typeof stylesStatus, string> = {
+  approved: "Aprovado",
+  pending: "Pendente",
+  in_process: "Em análise",
+  authorized: "Autorizado",
+
+  rejected: "Rejeitado",
+  charged_back: "Chargeback",
+
+  refunded: "Estornado",
+  cancelled: "Cancelado",
+
+  in_mediation: "Em disputa",
+};
+
+export const payment_methods_id = {
+    pix: "PIX",
+    master: "Cartão",
+    boleto: "Boleto"
+}

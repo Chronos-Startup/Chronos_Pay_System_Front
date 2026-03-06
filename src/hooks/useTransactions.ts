@@ -7,12 +7,14 @@ interface UseTransactionsProps {
     userId?: string;
     page: number;
     pageSize?: number;
+    filters?: object
 }
 
 export function useTransactions({
     userId,
     page,
     pageSize = 10,
+    filters
 }: UseTransactionsProps) {
     // Guarda cursores por página
     const cursorsRef = useRef<Record<number, any>>({});
@@ -29,7 +31,8 @@ export function useTransactions({
             const response = await fetchTransactionsWithPagination(
                 userId!,
                 pageSize,
-                cursor
+                cursor,
+                filters
             );
 
             // Salva cursor da próxima página

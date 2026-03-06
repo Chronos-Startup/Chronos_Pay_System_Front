@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 import { PaymentResponse } from "mercadopago/dist/clients/payment/commonTypes";
 import TextUppercase from "./TextUppercase";
 import StatusBadge from "./statusBadge";
-import { errorMap, stylesStatus } from "../constants/mpErrorTranslate";
+import { errorMap, stylesStatus } from "../constants/constants";
 import { Button } from "./Button";
 import { formatDate } from "../utils/DateUtils";
 

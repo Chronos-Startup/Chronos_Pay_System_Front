@@ -1,4 +1,4 @@
-import { CreditCard, QrCode } from "lucide-react";
+import { CreditCard, QrCode, ScrollText } from "lucide-react";
 
 interface PaymentMethodBadgeProps {
   payment_method_id: string | undefined;
@@ -12,6 +12,7 @@ export default function PaymentMethodBadge({
   const icons: Record<string, JSX.Element> = {
     pix: <QrCode />,
     master: <CreditCard />,
+    boleto: <ScrollText />
   };
 
   return (
