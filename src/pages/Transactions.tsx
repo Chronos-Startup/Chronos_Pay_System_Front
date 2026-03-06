@@ -88,7 +88,7 @@ export default function Transactions({ userCognito }: UserAmplify) {
             </p>}
         </div>
 
-        <Button.Root onClick={() => refetch()} className="w-full text-black">
+        <Button.Root onClick={() => refetch()} className="w-full lg:hidden text-black">
           <Button.Icon icon={Search} />
           Buscar
         </Button.Root>
