@@ -21,9 +21,11 @@ export function AuthProvider({ children, userCognito }: { children: ReactNode; u
         ]);
         setUser({
           ...response,
+          name: attributes.name,
+          email: attributes.email,
           company: {
             name: attributes["custom:company_name"] || "",
-            website: response?.company?.website,
+            website: attributes.website,
             industry: attributes["custom:company_industry"] || "",
           },
         });

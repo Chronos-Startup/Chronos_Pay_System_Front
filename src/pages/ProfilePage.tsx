@@ -127,7 +127,7 @@ export default function ProfilePage() {
                 required
                 placeholder="Pagamentos Digitais"
                 errors={errors?.company?.industry?.message}
-                {...register("company.industry", { required: "Nome da empresa é obrigatório" })}
+                {...register("company.industry", { required: "Setor de atuação é obrigatório" })}
               />
             </div>
           </div>

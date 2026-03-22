@@ -1,5 +1,6 @@
 import { forwardRef, InputHTMLAttributes } from "react";
 import TextUppercase from "../components/TextUppercase";
+import { twMerge } from "tailwind-merge";
 
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
@@ -18,7 +19,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           ref={ref}
           type={type}
           placeholder={placeholder}
-          className="inputs text-white focus:outline-none"
+          className={twMerge("inputs text-white focus:outline-none", errors && "border-red-400")}
         />
         {errors && <span className="text-red-400 text-xs">{errors}</span>}
       </div>
