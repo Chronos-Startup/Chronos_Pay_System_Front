@@ -16,9 +16,9 @@ export default function CopyButton({ value, className, children }: CopyButtonPro
   }
 
   return (
-    <button onClick={() => copy(value)} className={`cursor-pointer transition ${className}`}>
-      {copied ? <CheckCircle size={18} /> : <Copy size={18} />}
+    <button onClick={() => copy(value)} className={`cursor-pointer transition flex items-center gap-3 ${className}`}>
       {children}
+      {copied ? <CheckCircle size={18} /> : <Copy size={18} />}
     </button>
   );
 }

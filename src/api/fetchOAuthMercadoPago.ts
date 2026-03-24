@@ -21,7 +21,7 @@ export async function fetchOAuthMercadoPago(user_id: string, code: string | null
 
     return response.data;
   } catch (error: any) {
-    throw new Error("Erro do servidor:", error);
+    throw new Error("Erro do servidor:", error.response.data.message);
   }
 }
 
@@ -37,6 +37,6 @@ export async function getOAuthMercadoPago(user_id: string) {
     });
     return response.data;
   } catch (error: any) {
-    throw new Error("Erro do servidor:", error);
+    throw new Error("Erro do servidor:", error.response.data.message);
   }
 }

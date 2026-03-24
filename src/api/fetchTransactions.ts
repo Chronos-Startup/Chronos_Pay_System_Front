@@ -5,7 +5,6 @@ import { toast } from "sonner";
 type LastEvaluatedKey = Record<string, unknown>;
 
 export async function fetchTransactionsWithPagination(
-  userId?: string,
   pageSize?: number,
   lastEvaluatedKey?: LastEvaluatedKey,
   filters?: object,
@@ -28,26 +27,9 @@ export async function fetchTransactionsWithPagination(
     });
     toast.success("Transações obtidas com sucesso!!");
     return response.data;
-  } catch (error) {
-    console.error("Erro ao buscar transações:", error);
+  } catch (error: any) {
+    console.error("Erro ao buscar transações:", error.response.data.message);
     toast.error("Erro ao buscar transações");
-    throw error;
-  }
-}
-
-export async function fetchPlans() {
-  try {
-    const idToken = await getCognitoIdToken();
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/subscribe`, {
-      headers: {
-        Authorization: `Bearer ${idToken}`,
-      },
-    });
-    toast.success("Planos obtidos com sucesso!!");
-    return response.data;
-  } catch (error) {
-    console.error("Erro ao buscar planos:", error);
-    toast.error("Erro ao buscar Planos");
-    throw error;
+    throw error.response.data.message;
   }
 }

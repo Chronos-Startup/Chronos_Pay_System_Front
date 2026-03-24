@@ -1,9 +1,11 @@
+import { PreApprovalPlanRequest } from "mercadopago/dist/clients/preApprovalPlan/commonTypes";
+
 interface FreeTrial {
   frequency: number;
   frequency_type: "days" | "months";
 }
 
-export interface Plan {
+export interface Plan extends PreApprovalPlanRequest {
   id: string;
   reason: string;
   auto_recurring: {
@@ -11,8 +13,8 @@ export interface Plan {
     frequency: number;
     frequency_type: "days" | "months";
     free_trial?: FreeTrial;
+    repetitions?: number;
   };
-  repetitions?: number;
   status: "active" | "inactive";
   subscribers: number;
   mrr: number;

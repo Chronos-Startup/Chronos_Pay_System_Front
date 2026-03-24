@@ -29,7 +29,7 @@ export function getInitialChar(value?: string) {
   return value?.slice(0, 1) || "?";
 }
 
-export function formatFrequencyFreeTrial(frequency?: number, frequencyType?: "days" | "months") {
+export function formatFrequencyFreeTrial(frequency?: number, frequencyType?: string) {
   if (!frequency || !frequencyType) return null;
   if (frequency <= 0) return "Inválido";
 
@@ -41,7 +41,7 @@ export function formatFrequencyFreeTrial(frequency?: number, frequencyType?: "da
   return `${frequency} ${units[frequencyType]}`;
 }
 
-export function formatFrequency(frequency_type: "days" | "months", frequency: number = 1) {
+export function formatFrequency(frequency_type?: string, frequency: number = 1) {
   if (frequency === 1) {
     return frequency_type === "months" ? "Mensal" : "Diário";
   }
