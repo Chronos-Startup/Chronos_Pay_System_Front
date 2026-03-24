@@ -39,6 +39,7 @@ export default function SearchTransactions({ filterForm, handleFilter }: SearchT
         <Search />
       </div>
       <Select
+        className="bg-midnight-dark"
         icon={ChartBarIcon}
         value={filterForm.status ?? ""}
         onChange={(e) => handleFilter("status", e.target.value)}
@@ -46,6 +47,7 @@ export default function SearchTransactions({ filterForm, handleFilter }: SearchT
         options={labels}
       />
       <Select
+        className="bg-midnight-dark"
         icon={CreditCard}
         value={filterForm.payment_method_id ?? ""}
         onChange={(e) => handleFilter("payment_method_id", e.target.value)}

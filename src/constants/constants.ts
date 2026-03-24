@@ -80,3 +80,8 @@ export const payment_methods_id = {
   master: "Cartão",
   bolbradesco: "Boleto",
 };
+
+export const TIME_UNITS_LABELS = {
+  months: "Meses",
+  days: "Dias",
+} as const;

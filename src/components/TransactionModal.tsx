@@ -10,6 +10,7 @@ import { errorMap, stylesStatus } from "../constants/constants";
 import { Button } from "./Button";
 import { formatDate } from "../utils/DateUtils";
 import { createPortal} from "react-dom" //criar o modal fora diretamente no body
+import { Modal } from "./Modal";
 interface TransactionModalProps {
   transaction: PaymentResponse;
   setShow: (value: boolean) => void;
@@ -18,15 +19,8 @@ export default function TransactionModal({ transaction, setShow }: TransactionMo
   const { date, time } = formatDate(transaction?.date_created);
   const status = transaction.status as keyof typeof stylesStatus;
   const status_detail = transaction.status_detail as keyof typeof errorMap;
-  return createPortal(
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.15, ease: "easeOut" }}
-      onClick={() => setShow(false)}
-      className="fixed inset-0 p-6 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs "
-    >
+  return (
+    <Modal setShow={setShow}>
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: -30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -106,7 +100,6 @@ export default function TransactionModal({ transaction, setShow }: TransactionMo
           <p className="font-bold text-md">Fechar Modal</p>
         </Button.Root>
       </motion.div>
-    </motion.div>,
-    document.body
+    </Modal>
   );
 }

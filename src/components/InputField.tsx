@@ -4,13 +4,14 @@ import { twMerge } from "tailwind-merge";
 
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
+  className?: string;
   errors?: string;
 };
 
 const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
-  ({ label, type = "text", placeholder, errors, required, ...rest }, ref) => {
+  ({ label, type = "text", placeholder, className, errors, required, ...rest }, ref) => {
     return (
-      <div className="flex flex-col gap-1.5">
+      <div className={twMerge("flex flex-col w-full gap-1.5", className)}>
         <TextUppercase>
           {label} {required && <span className="text-primary">*</span>}
         </TextUppercase>
