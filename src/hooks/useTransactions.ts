@@ -31,6 +31,8 @@ export function useTransactions({ page, pageSize, filters }: UseTransactionsProp
 
       return response.Items.length > 0 ? response : toast.info("Nenhuma transação encontrada");
     },
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 }
 
@@ -39,7 +41,13 @@ export function usePlans() {
     queryKey: ["plans"],
     queryFn: async () => {
       const response = await fetchPlans();
-      return response.Items;
+      return response.Items ?? [];
     },
+    retry: false,
+    staleTime: Infinity, // nunca considera stale
+    gcTime: Infinity, // mantém em cache
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
   });
 }

@@ -32,8 +32,8 @@ export async function fetchPlans() {
     toast.success("Planos obtidos com sucesso!!");
     return response.data;
   } catch (error: any) {
-    console.error("Erro ao buscar planos:", error.response.data.message);
-    toast.error(error.response.data.message);
+    console.error("Erro ao buscar planos:", error.response.data.message || error.response.data.error);
+    toast.error(error.response.data.message || error.response.data.error);
     throw error;
   }
 }
