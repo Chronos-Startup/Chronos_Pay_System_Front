@@ -55,7 +55,7 @@ export default function SubscriberRow({ subscriber }: SubscriberRowProps) {
         {/* ID */}
         <Table.Body.Data>
           <div className="font-medium text-white">{subscriber?.id}</div>
-          <div className="text-xs text-gray-500">Ref: {truncateString(subscriber.external_reference)}</div>
+          <div className="text-xs text-gray-400">Ref: {truncateString(subscriber.external_reference)}</div>
         </Table.Body.Data>
 
         {/* Assinante */}
@@ -66,7 +66,7 @@ export default function SubscriberRow({ subscriber }: SubscriberRowProps) {
             </div>
             <div>
               <div className="font-medium text-white">{subscriber.name || "—"}</div>
-              <div className="text-xs text-gray-500">{subscriber.payer_email || "Sem Email"}</div>
+              <div className="text-xs text-gray-400">{subscriber.payer_email || "Sem Email"}</div>
             </div>
           </div>
         </Table.Body.Data>
@@ -74,13 +74,13 @@ export default function SubscriberRow({ subscriber }: SubscriberRowProps) {
         {/* Documento */}
         <Table.Body.Data>
           <div className="font-medium text-white">{subscriber.identificationType || "—"}</div>
-          <div className="text-xs text-gray-500">{subscriber.identificationNumber || "—"}</div>
+          <div className="text-xs text-gray-400">{subscriber.identificationNumber || "—"}</div>
         </Table.Body.Data>
 
         {/* Plano */}
         <Table.Body.Data>
           <div className="font-medium text-white">{subscriber.reason || "—"}</div>
-          <div className="text-xs text-gray-500">A cada {frequency}</div>
+          <div className="text-xs text-gray-400">A cada {frequency}</div>
         </Table.Body.Data>
 
         {/* Valor */}
@@ -96,12 +96,12 @@ export default function SubscriberRow({ subscriber }: SubscriberRowProps) {
         {/* Data */}
         <Table.Body.Data>
           <div>{date}</div>
-          <div className="text-xs text-gray-500">{time}</div>
+          <div className="text-xs text-gray-400">{time}</div>
         </Table.Body.Data>
 
         <Table.Body.Data>
           <div>{nextPaymentDate}</div>
-          <div className="text-xs text-gray-500">{nextPaymentTime}</div>
+          <div className="text-xs text-gray-400">{nextPaymentTime}</div>
         </Table.Body.Data>
 
         {/* Ações */}

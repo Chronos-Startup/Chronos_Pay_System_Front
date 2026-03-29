@@ -1,9 +1,10 @@
-import { StrictMode } from "react";
+import { StrictMode, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { ThemeProvider, defaultTheme } from "@aws-amplify/ui-react";
 import App from "./App";
-import { Toaster } from 'sonner'
+
+const Toaster = lazy(() => import("sonner").then((m) => ({ default: m.Toaster })));
 
 const theme = {
   ...defaultTheme,
@@ -30,8 +31,10 @@ const theme = {
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <Toaster richColors position="top-center" />
-      <App />
+      <Suspense fallback={null}>
+        <Toaster richColors position="top-center" />
+        <App />
+      </Suspense>
     </ThemeProvider>
   </StrictMode>,
 );

@@ -1,61 +1,71 @@
 <!doctype html>
 <html lang="pt-BR" dir="ltr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
 
-    <!--Page Title-->
-    <title>Chronos Front-End Template</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--Structured Data-->
-    <script type="application/ld+json">
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Title & Description -->
+  <title>Chronos Pay — Gestão de Pagamentos</title>
+  <meta name="description" content="Gerencie pagamentos, assinaturas e transações com o Chronos Pay." />
+  <meta name="keywords" content="pagamentos, assinaturas, mercado pago, gestão financeira, chronos pay" />
+  <meta name="author" content="Chronos Pay" />
+
+  <!-- Robots — dashboard privado -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Performance -->
+  <link rel="preconnect" href="https://cognito-idp.us-east-1.amazonaws.com" />
+  <link rel="preconnect" href="https://emot34fjb7.execute-api.us-east-1.amazonaws.com" />
+  <link rel="dns-prefetch" href="https://www.mercadopago.com.br" />
+
+  <!-- Open Graph (Facebook / WhatsApp / LinkedIn) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Chronos Pay" />
+  <meta property="og:title" content="Chronos Pay — Gestão de Pagamentos" />
+  <meta property="og:description" content="Gerencie pagamentos, assinaturas e transações com o Chronos Pay." />
+  <meta property="og:image" content="https://app.chronospay.ufersa.dev.br/og-image.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://app.chronospay.ufersa.dev.br/" />
+  <meta property="og:locale" content="pt_BR" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chronos Pay — Gestão de Pagamentos" />
+  <meta name="twitter:description" content="Gerencie pagamentos, assinaturas e transações com o Chronos Pay." />
+  <meta name="twitter:image" content="https://app.chronospay.ufersa.dev.br/og-image.webp" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Titulo do site",
-        "alternateName": "Titulo alternativo do site",
-        "url": "https://www.seu_site.com.br/",
-        "logo": "https://www.seu_site.com.br/logo.webp",
-        "description": "Descrição do site"
+        "@type": "WebApplication",
+        "name": "Chronos Pay",
+        "url": "https://app.chronospay.ufersa.dev.br",
+        "logo": "https://app.chronospay.ufersa.dev.br/favicon.png",
+        "description": "Gerencie pagamentos, assinaturas e transações com o Chronos Pay.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "offers": {
+          "@type": "Offer",
+          "price": "0"
+        }
       }
     </script>
 
-    <meta name="description" content="Descrição do site" />
-    <!--Page Description-->
+  <!-- Theme -->
+  <meta name="theme-color" content="#0f1117" />
+  <meta name="color-scheme" content="dark" />
+</head>
 
-    <meta name="keywords" content="palavras-chave, separadas, por, vírgula" />
-    <!--Keywords for SEO-->
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
 
-    <meta name="robots" content="index, nofollow" />
-    <!--Robots for Google-->
-
-    <!--Meta Tags for Facebook-->
-    <meta property="og:site_name" content="Titulo do site para Google" />
-    <meta property="og:title" content="Titulo do site para Facebook" />
-    <meta property="og:description" content="Descrição do site para Facebook" />
-    <meta property="og:image" content="www.sua_url.com.br/sua_logo.webp" />
-    <meta property="og:image:width" content="600" />
-    <meta property="og:image:height" content="314" />
-    <meta property="og:url" content="www.sua_url.com.br/" />
-    <meta property="og:type" content="website" />
-    <!--Page Type-->
-  </head>
-
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-
-    <!--Added the VLibras-->
-    <div vw class="enabled">
-      <div vw-access-button class="active" aria-label="Ativar tradução para Libras"></div>
-      <div vw-plugin-wrapper>
-        <div class="vw-plugin-top-wrapper"></div>
-      </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-      new window.VLibras.Widget("https://vlibras.gov.br/app");
-    </script>
-  </body>
 </html>

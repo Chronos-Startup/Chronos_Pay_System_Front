@@ -28,10 +28,10 @@ export default function App() {
           <AuthProvider userCognito={user}>
             <BrowserRouter>
               <QueryClientProvider client={queryClient}>
-                <div className="w-full">
+                <main className="w-full">
                   <HeaderDashboard signOut={signOut} userCognito={user} />
                   <AppRoutes user={user} signOut={signOut} />
-                </div>
+                </main>
               </QueryClientProvider>
             </BrowserRouter>
           </AuthProvider>

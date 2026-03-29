@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 import { createPreApprovalPlan } from "../api/PreApproval";
 import { PreApprovalPlanResponse } from "mercadopago/dist/clients/preApprovalPlan/commonTypes";
 
-export function PreApprovalPlanPage() {
+export default function PreApprovalPlanPage() {
   const { data, isLoading } = usePlans();
   const [show, setShow] = useState<boolean | null>(null);
   const handleShowModal = () => {

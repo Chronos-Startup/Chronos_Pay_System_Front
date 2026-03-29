@@ -117,12 +117,13 @@ export default function Transactions({ userCognito }: UserAmplify) {
           {transactions.length} Item | Página {page}
         </p>
         <div className="flex gap-2">
-          <Button.Root className="p-2" disabled={!hasPreviousPage} onClick={previousPage}>
-            <Button.Icon icon={ArrowLeft} />
+          <Button.Root className="p-2" disabled={!hasPreviousPage} onClick={previousPage} aria-label="Página anterior">
+            <Button.Icon icon={ArrowLeft} aria-hidden="true" />
           </Button.Root>
+
           {!isEmpty && (
-            <Button.Root className="p-2" disabled={!hasNextPage} onClick={nextPage}>
-              <Button.Icon icon={ArrowRight} />
+            <Button.Root className="p-2" disabled={!hasNextPage} onClick={nextPage} aria-label="Próxima página">
+              <Button.Icon icon={ArrowRight} aria-hidden="true" />
             </Button.Root>
           )}
         </div>

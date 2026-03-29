@@ -24,7 +24,7 @@ type Subscriber = {
   };
 };
 
-export function PreApprovalPlanSubscribersPage() {
+export default function PreApprovalPlanSubscribersPage() {
   const { preapproval_plan_id } = useParams<{ preapproval_plan_id: string }>();
   const { data, isLoading } = useSubscribers(preapproval_plan_id!);
   console.log(data);

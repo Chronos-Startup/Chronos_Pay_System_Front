@@ -2,12 +2,12 @@ import { AuthUser } from "aws-amplify/auth";
 import { useEffect, lazy, Suspense } from "react";
 import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import LoadingPage from "../pages/LoadingPage";
-import { PreApprovalPlanPage } from "../pages/PreApprovalPlanPage";
-import { PreApprovalPlanSubscribersPage } from "../pages/PreApprovalPlanPageSubscribers";
 
 const MercadoPagoConnect = lazy(() => import("../pages/MercadoPagoConnect"));
 const Transactions = lazy(() => import("../pages/Transactions"));
 const ProfilePage = lazy(() => import("../pages/ProfilePage"));
+const PreApprovalPlanPage = lazy(() => import("../pages/PreApprovalPlanPage"));
+const PreApprovalPlanSubscribersPage = lazy(() => import("../pages/PreApprovalPlanPageSubscribers"));
 
 export default function AppRoutes({ user, signOut }: { user?: AuthUser; signOut?: () => void }) {
   const navigate = useNavigate();

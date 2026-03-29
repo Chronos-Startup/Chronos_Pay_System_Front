@@ -24,7 +24,7 @@ export default function TransactionRow({ transaction }: TransactionRowProps) {
       <Table.Body.Row onClick={() => setShow(!show)}>
         <Table.Body.Data>
           <div className="font-medium text-white">{transaction?.id}</div>
-          <div className="text-xs text-gray-500">API Ref: {truncateString(transaction.external_reference)}</div>
+          <div className="text-xs text-gray-400">API Ref: {truncateString(transaction.external_reference)}</div>
         </Table.Body.Data>
         <Table.Body.Data>
           <div className="flex items-center gap-3">
@@ -33,7 +33,7 @@ export default function TransactionRow({ transaction }: TransactionRowProps) {
             </div>
             <div>
               <div className="font-medium text-white">{payerName}</div>
-              <div className="text-xs text-gray-500">{transaction?.payer?.email || "Sem Email"}</div>
+              <div className="text-xs text-gray-400">{transaction?.payer?.email || "Sem Email"}</div>
             </div>
           </div>
         </Table.Body.Data>
@@ -50,7 +50,7 @@ export default function TransactionRow({ transaction }: TransactionRowProps) {
         </Table.Body.Data>
         <Table.Body.Data>
           <div>{date}</div>
-          <div className="text-xs text-gray-500">{time}</div>
+          <div className="text-xs text-gray-400">{time}</div>
         </Table.Body.Data>
         <Table.Body.Data className="text-right">
           <button> ⋮</button>
