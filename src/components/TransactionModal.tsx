@@ -1,4 +1,4 @@
-import { BadgeDollarSign, User, X } from "lucide-react";
+import { CreditCard, FileText, Receipt, User, X } from "lucide-react";
 import PaymentMethodBadge from "./PaymentMethodBadge";
 import TransactionModalField from "./TransactionModalField";
 import { formatDocument } from "../utils/StringUtils";
@@ -18,6 +18,11 @@ export default function TransactionModal({ transaction, setShow }: TransactionMo
   const { date, time } = formatDate(transaction?.date_created);
   const status = transaction.status as keyof typeof stylesStatus;
   const status_detail = transaction.status_detail as keyof typeof errorMap;
+  const payerName =
+    `${transaction.payer?.first_name || ""} ${transaction.payer?.last_name || ""}`.trim() ||
+    transaction.card?.cardholder?.name ||
+    "Não Informado";
+
   return (
     <Modal setShow={setShow}>
       <motion.div
@@ -37,10 +42,10 @@ export default function TransactionModal({ transaction, setShow }: TransactionMo
         <main>
           <div className="w-full border-b py-6 border-text-gray flex flex-col gap-2 items-center justify-center">
             <TextUppercase className="text-md">VALOR DA TRANSAÇÃO</TextUppercase>
-            <span className="text-4xl font-extrabold">R$ {transaction.transaction_amount}</span>
+            <span className="text-4xl font-extrabold">R$ {transaction.transaction_amount?.toFixed(2)}</span>
             <p className="text-text-gray text-md">{transaction.description}</p>
             <p className={`${stylesStatus[status]} px-3 py-1 rounded-full text-wrap border text-md`}>
-              {errorMap[status_detail]}
+              {errorMap[status_detail] || transaction.status_detail}
             </p>
           </div>
           <div className="flex max-md:flex-col">
@@ -48,11 +53,8 @@ export default function TransactionModal({ transaction, setShow }: TransactionMo
               <TextUppercase className="text-primary flex gap-2 items-center ">
                 <User /> DADOS DO PAGADOR
               </TextUppercase>
-              <TransactionModalField
-                label="nome completo"
-                value={`${transaction.payer?.first_name}  ${transaction.payer?.last_name}`}
-              />
-              <TransactionModalField label="email" value={transaction.payer?.email} />
+              <TransactionModalField label="nome completo" value={payerName} />
+              <TransactionModalField label="email" value={transaction.payer?.email || "Não Informado"} />
               {transaction.payer?.identification?.number && (
                 <TransactionModalField
                   label={transaction.payer.identification.type}
@@ -68,7 +70,7 @@ export default function TransactionModal({ transaction, setShow }: TransactionMo
             </div>
             <div className="py-4 flex flex-col gap-4 w-full md:max-w-1/2">
               <TextUppercase className="text-primary flex gap-2 items-center ">
-                <BadgeDollarSign /> Método de Pagamento
+                <CreditCard /> Método de Pagamento
               </TextUppercase>
               <div className="p-6 rounded-2xl flex flex-wrap items-center uppercase bg-midnight-light border border-text-gray text-green-400">
                 <PaymentMethodBadge payment_method_id={transaction.payment_method_id} />
@@ -79,7 +81,7 @@ export default function TransactionModal({ transaction, setShow }: TransactionMo
               {transaction.installments && (
                 <TransactionModalField
                   label="Parcelas"
-                  value={`${transaction.installments}x R$${transaction.transaction_details?.installment_amount || transaction.transaction_amount}`}
+                  value={`${transaction.installments}x R$${transaction.transaction_details?.installment_amount ?? transaction.transaction_amount}`}
                 />
               )}
               {transaction.statement_descriptor && (
@@ -87,12 +89,30 @@ export default function TransactionModal({ transaction, setShow }: TransactionMo
               )}
             </div>
           </div>
-          <div className="py-4 flex flex-col gap-4 w-full">
-            <TextUppercase className="text-primary flex gap-2 items-center ">
-              <BadgeDollarSign /> Dados Técnicos
-            </TextUppercase>
-            <TransactionModalField label="Referencia Externa" value={transaction.external_reference} />
-            <TransactionModalField label="Data de criação" value={`${date} as ${time}`} />
+          <div className="flex max-md:flex-col">
+            <div className="py-4 flex flex-col gap-4 w-full">
+              <TextUppercase className="text-primary flex gap-2 items-center ">
+                <FileText /> Dados Técnicos
+              </TextUppercase>
+              <TransactionModalField label="Referencia Externa" value={transaction.external_reference} />
+              <TransactionModalField label="Data de criação" value={`${date} as ${time}`} />
+            </div>
+            <div className="py-4 flex flex-col gap-4 w-full">
+              <TextUppercase className="text-primary flex gap-2 items-center ">
+                <Receipt /> TAXAS
+              </TextUppercase>
+              {transaction.fee_details?.length ? (
+                transaction.fee_details!.map((fee, index) => (
+                  <TransactionModalField
+                    key={index}
+                    label={fee.type === "mercadopago_fee" ? "Taxa do Mercado Pago" : "Taxa da Chronos Pay"}
+                    value={`R$ ${fee.amount}`}
+                  />
+                ))
+              ) : (
+                <p className="text-text-gray text-sm">Sem taxas</p>
+              )}
+            </div>
           </div>
         </main>
         <Button.Root onClick={() => setShow(false)} className="w-full flex justify-center text-midnight-dark">

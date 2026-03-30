@@ -26,7 +26,12 @@ export function formatDocument(value?: string | number): string {
 }
 
 export function getInitialChar(value?: string) {
-  return value?.slice(0, 1) || "?";
+  return (
+    value
+      ?.split(" ")
+      .map((word) => word.slice(0, 1))
+      .join("") || null
+  );
 }
 
 export function formatFrequencyFreeTrial(frequency?: number, frequencyType?: string) {
@@ -47,4 +52,20 @@ export function formatFrequency(frequency_type?: string, frequency: number = 1) 
   }
 
   return `${frequency} ${frequency_type === "months" ? "meses" : "dias"}`;
+}
+
+export function getColorFromName(name?: string) {
+  const colors = [
+    "bg-purple-600",
+    "bg-blue-600",
+    "bg-green-600",
+    "bg-yellow-600",
+    "bg-pink-600",
+    "bg-indigo-600",
+    "bg-orange-600",
+    "bg-teal-600",
+  ];
+
+  const index = (name?.charCodeAt(0) ?? 0) % colors.length;
+  return colors[index];
 }

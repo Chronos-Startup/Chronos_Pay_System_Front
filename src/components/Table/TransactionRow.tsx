@@ -1,7 +1,7 @@
 import { PaymentResponse } from "mercadopago/dist/clients/payment/commonTypes";
 import { Table } from ".";
 import { formatDate } from "../../utils/DateUtils";
-import { getInitialChar, truncateString } from "../../utils/StringUtils";
+import { getColorFromName, getInitialChar, truncateString } from "../../utils/StringUtils";
 import PaymentMethodBadge from "../PaymentMethodBadge";
 import StatusBadge from "../statusBadge";
 import { useState } from "react";
@@ -14,10 +14,10 @@ interface TransactionRowProps {
 export default function TransactionRow({ transaction }: TransactionRowProps) {
   const { date, time } = formatDate(transaction?.date_created);
   const [show, setShow] = useState<boolean>(false);
-  const initials =
-    `${getInitialChar(transaction.payer?.first_name)}${getInitialChar(transaction.payer?.last_name)}`.toUpperCase() ||
-    "?";
-  const payerName = `${transaction.payer?.first_name || ""} ${transaction.payer?.last_name || ""}`.trim();
+  const payerName =
+    `${transaction.payer?.first_name || ""} ${transaction.payer?.last_name || ""}`.trim() ||
+    transaction.card?.cardholder?.name;
+  const initials = getInitialChar(payerName)?.toUpperCase();
 
   return (
     <>
@@ -28,12 +28,14 @@ export default function TransactionRow({ transaction }: TransactionRowProps) {
         </Table.Body.Data>
         <Table.Body.Data>
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-purple-600 text-white text-xs font-semibold">
-              {initials}
+            <div
+              className={`w-9 h-9 flex items-center justify-center rounded-lg ${initials ? getColorFromName(payerName) : "bg-red-800"} text-white text-xs font-semibold`}
+            >
+              {initials || "?"}
             </div>
             <div>
-              <div className="font-medium text-white">{payerName}</div>
-              <div className="text-xs text-gray-400">{transaction?.payer?.email || "Sem Email"}</div>
+              <div className="font-medium text-white">{payerName || "Usuário Desconhecido"}</div>
+              <div className="text-xs text-gray-400">{transaction?.payer?.email || "Email Desconhecido"}</div>
             </div>
           </div>
         </Table.Body.Data>
@@ -43,7 +45,7 @@ export default function TransactionRow({ transaction }: TransactionRowProps) {
           </span>
         </Table.Body.Data>
         <Table.Body.Data>
-          <span>R$ {transaction.transaction_amount}</span>
+          <span>R$ {transaction.transaction_amount?.toFixed(2)}</span>
         </Table.Body.Data>
         <Table.Body.Data>
           <StatusBadge status={transaction?.status} />
