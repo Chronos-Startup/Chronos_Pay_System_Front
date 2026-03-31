@@ -6,7 +6,6 @@ import { toast } from "sonner";
 export async function createPreApprovalPlan(data: Plan) {
   try {
     const idToken = await getCognitoIdToken();
-    console.log(idToken);
     const response = await axios.post(`${import.meta.env.VITE_API_URL}/preapproval_plan`, data, {
       headers: {
         Authorization: `Bearer ${idToken}`,
@@ -15,8 +14,8 @@ export async function createPreApprovalPlan(data: Plan) {
     console.log(response);
     return response.data;
   } catch (error: any) {
-    console.log("Erro ao realizar update de usuário:", error.response.data.message);
-    toast.error(error.response.data.message);
+    console.log("Erro ao realizar update de usuário:", error.response.data.message || error.response.data.error);
+    toast.error(error.response.data.message || error.response.data.error);
     throw error;
   }
 }

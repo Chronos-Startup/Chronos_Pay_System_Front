@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { createPortal } from "react-dom";
 interface ModalProps {
   setShow: (value: boolean) => void;
@@ -7,6 +7,12 @@ interface ModalProps {
 }
 
 export function Modal({ setShow, children }: ModalProps) {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
   return createPortal(
     <motion.div
       initial={{ opacity: 0 }}

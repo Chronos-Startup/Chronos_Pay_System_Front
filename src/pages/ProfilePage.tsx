@@ -74,7 +74,9 @@ export default function ProfilePage() {
           <div className="glass-card flex-1 flex flex-col gap-6 p-10 rounded-xl">
             <div className="border-b border-text-gray/20 pb-3 flex gap-3 items-center">
               <Building2 className="text-primary" />
-              <h2 className="text-white font-bold">Informações Pessoais</h2>
+              <h2 className="text-white font-bold">
+                Informações Pessoais <span className="text-xs text-white/60">(Imutável)</span>
+              </h2>
             </div>
             <div className="flex flex-col gap-4">
               <InputField label="Nome completo" placeholder="Seu nome" readOnly disabled value={user?.name} />

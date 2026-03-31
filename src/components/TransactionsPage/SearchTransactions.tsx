@@ -27,11 +27,11 @@ export default function SearchTransactions({ filterForm, handleFilter }: SearchT
   }, [filterForm]);
 
   return (
-    <div className="flex gap-8 max-lg:flex-col justify-between">
-      <div className="inputs flex bg-midnight-dark">
+    <div className="flex gap-8 max-lg:flex-col items-end justify-between">
+      <div className="inputs border-primary/20 h-full flex text-primary group bg-midnight-dark">
         <input
           type="search"
-          className="w-full focus:outline-none"
+          className="w-full placeholder:text-text-gray focus:outline-none"
           placeholder="Buscar por Nome..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}

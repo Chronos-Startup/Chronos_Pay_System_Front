@@ -17,16 +17,16 @@ export const Select = forwardRef<HTMLSelectElement, SelectComponentProps>(
         <TextUppercase>
           {label} {required && <span className="text-primary">*</span>}
         </TextUppercase>
-        <div className={twMerge("inputs flex items-center gap-2", className)}>
+        <div className={twMerge("inputs border-primary/20 flex items-center gap-2", className)}>
           <select ref={ref} {...rest} className="w-full appearance-none h-full bg-transparent focus:outline-none">
             {placeholder && <option value="">{placeholder}</option>}
             {Object.entries(options).map(([value, label]) => (
-              <option key={value} value={value}>
+              <option className="text-black" key={value} value={value}>
                 {label}
               </option>
             ))}
           </select>
-          {Icon && <Icon className="text-text-gray shrink-0" size={16} />}
+          {Icon && <Icon className="text-primary shrink-0" size={16} />}
         </div>
       </div>
     );

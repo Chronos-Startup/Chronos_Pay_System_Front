@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { InfoNote } from "../components/InfoNote";
 import { useSubscribers } from "../hooks/useSubscribers";
 import { Table } from "../components/Table";
+import LoadingCircle from "../components/LoadingCircle";
 
 type Subscriber = {
   id: string;
@@ -27,7 +28,6 @@ type Subscriber = {
 export default function PreApprovalPlanSubscribersPage() {
   const { preapproval_plan_id } = useParams<{ preapproval_plan_id: string }>();
   const { data, isLoading } = useSubscribers(preapproval_plan_id!);
-  console.log(data);
 
   return (
     <div className="w-full p-6 min-h-screen flex flex-col gap-10 overflow-x-hidden">
@@ -46,9 +46,7 @@ export default function PreApprovalPlanSubscribersPage() {
 
       {/* Loading */}
       {isLoading && (
-        <div className="flex justify-center items-center h-40">
-          <span className="subtitles animate-pulse">Carregando assinantes...</span>
-        </div>
+        <LoadingCircle />
       )}
 
       {/* Sem assinantes */}

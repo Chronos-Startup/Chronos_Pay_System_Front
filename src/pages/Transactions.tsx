@@ -7,6 +7,7 @@ import { TransactionFilters } from "../types/transactionFilters";
 import SearchTransactions from "../components/TransactionsPage/SearchTransactions";
 import Filters from "../components/TransactionsPage/Filters";
 import { PaymentResponse } from "mercadopago/dist/clients/payment/commonTypes";
+import LoadingCircle from "../components/LoadingCircle";
 export default function Transactions() {
   const [page, setPage] = useState(1);
   const [filterForm, setFilterForm] = useState<TransactionFilters>({});
@@ -41,8 +42,8 @@ export default function Transactions() {
     <div className="w-full p-6 min-h-screen flex flex-col gap-5 overflow-x-hidden">
       <div className="flex justify-between md:max-h-14 max-md:flex-col max-md:gap-5">
         <div>
-          <h1 className="titles text-3xl">Transações</h1>
-          <p className="subtitles text-wrap">Visualize e gerencie todas as transações da sua conta.</p>
+          <h1 className="titles text-3xl text-primary/90">Transações</h1>
+          <p className="subtitles text-wrap text-white/90">Visualize e gerencie todas as transações da sua conta.</p>
         </div>
         {/* <div className="flex gap-3">
           <Button.Root className="text-charcoal">
@@ -82,16 +83,8 @@ export default function Transactions() {
           </Table.Root>
         )}
 
-        {isLoading && (
-          <div className="flex flex-col items-center justify-center py-20 gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-              <LoaderCircleIcon className="text-text-gray animate-spin w-7 h-7" />
-            </div>
-            <div className="text-center">
-              <p className="text-white font-semibold">Carregando...</p>
-            </div>
-          </div>
-        )}
+        {isLoading && <LoadingCircle />}
+
         {isEmpty && (
           <div className="flex flex-col items-center justify-center py-20 gap-4">
             <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
