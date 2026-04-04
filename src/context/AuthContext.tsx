@@ -29,6 +29,7 @@ export function AuthProvider({ children, userCognito }: { children: ReactNode; u
             industry: attributes["custom:company_industry"] || "",
           },
         });
+
         setMpConnected(response.mp.isConnected);
       } catch (error) {
         console.log("Erro ao carregar usuário:", error);
@@ -62,6 +63,8 @@ export function AuthProvider({ children, userCognito }: { children: ReactNode; u
 
 export function useAuth() {
   const context = useContext(AuthContext);
+  if (!context?.user?.company?.website)
+    toast.error("Por favor, complete as informações da sua empresa no perfil para usar o sistema.");
   if (!context) throw new Error("useAuth deve ser usado dentro de AuthProvider");
   return context;
 }

@@ -15,26 +15,31 @@ export const formFields = {
       label: "NOME COMPLETO",
       placeholder: "Seu nome completo",
       order: 1,
+      isRequired: true,
     },
     email: {
       label: "E-MAIL CORPORATIVO",
       placeholder: "seu@email.com",
       order: 2,
+      isRequired: true,
     },
     password: {
       label: "SENHA",
       placeholder: "*********",
       order: 2,
+      isRequired: true,
     },
     confirm_password: {
       label: "CONFIRMAR SENHA",
       placeholder: "*********",
       order: 3,
+      isRequired: true,
     },
     website: {
       label: "WEBSITE (Site da sua empresa)",
       placeholder: "https://www.seusite.com",
       order: 4,
+      isRequired: true,
     },
   },
 

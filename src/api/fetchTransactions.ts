@@ -25,7 +25,6 @@ export async function fetchTransactionsWithPagination(
         Authorization: `Bearer ${idToken}`,
       },
     });
-    toast.success("Transações obtidas com sucesso!!");
     return response.data;
   } catch (error: any) {
     console.error("Erro ao buscar transações:", error.response.data.message);

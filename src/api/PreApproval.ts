@@ -28,7 +28,6 @@ export async function fetchPlans() {
         Authorization: `Bearer ${idToken}`,
       },
     });
-    toast.success("Planos obtidos com sucesso!!");
     return response.data;
   } catch (error: any) {
     console.error("Erro ao buscar planos:", error.response.data.message || error.response.data.error);

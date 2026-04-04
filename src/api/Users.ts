@@ -32,7 +32,6 @@ export async function updateUserProfile(data: any) {
         },
       },
     );
-    console.log(response);
     return response.data;
   } catch (error: any) {
     console.log("Erro ao realizar update de usuário:", error.response.data.message);

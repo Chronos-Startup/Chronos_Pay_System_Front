@@ -122,10 +122,9 @@ export default function ProfilePage() {
               <InputField
                 label="setor de atuação"
                 type="text"
-                required
                 placeholder="Pagamentos Digitais"
                 errors={errors?.company?.industry?.message}
-                {...register("company.industry", { required: "Setor de atuação é obrigatório" })}
+                {...register("company.industry")}
               />
             </div>
           </div>
