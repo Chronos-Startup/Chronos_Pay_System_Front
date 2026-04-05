@@ -26,20 +26,29 @@ export const formFields = {
     password: {
       label: "SENHA",
       placeholder: "*********",
-      order: 2,
+      order: 3,
       isRequired: true,
     },
     confirm_password: {
       label: "CONFIRMAR SENHA",
       placeholder: "*********",
-      order: 3,
+      order: 4,
       isRequired: true,
     },
     website: {
       label: "WEBSITE (Site da sua empresa)",
       placeholder: "https://www.seusite.com",
-      order: 4,
+      order: 5,
       isRequired: true,
+    },
+  },
+
+  confirmSignUp: {
+    // 👈 era ConfirmSignUp
+    confirmation_code: {
+      // 👈 era "test"
+      label: "Código de verificação",
+      placeholder: "Digite o código enviado para seu e-mail",
     },
   },
 

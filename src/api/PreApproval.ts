@@ -31,7 +31,6 @@ export async function fetchPlans() {
     return response.data;
   } catch (error: any) {
     console.error("Erro ao buscar planos:", error.response.data.message || error.response.data.error);
-    toast.error(error.response.data.message || error.response.data.error);
     throw error;
   }
 }
@@ -47,7 +46,6 @@ export async function fetchSubscriptionsByPlanId(preApprovalPlanId: string) {
         },
       },
     );
-    toast.success("Assinaturas obtidas com sucesso!!");
     return response.data;
   } catch (error: any) {
     console.error("Erro ao buscar assinaturas:", error.response.data.message || error.response.data.error);

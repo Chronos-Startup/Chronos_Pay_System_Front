@@ -15,7 +15,11 @@ export default function ModalCreatePlan() {
   const { register, handleSubmit } = useForm<Plan>();
 
   async function onSubmit(data: Plan) {
+    if (!showFreeTrial) {
+      data.auto_recurring.free_trial = undefined; // remove objeto de teste se não for habilitado
+    }
     await createPreApprovalPlan?.(data);
+    window.location.reload();
   }
 
   const [showFreeTrial, setShowFreeTrial] = useState<boolean | null>(false);

@@ -29,7 +29,7 @@ export function useTransactions({ page, pageSize, filters }: UseTransactionsProp
         cursorsRef.current[page] = response.LastEvaluatedKey;
       }
 
-      return response.Items.length > 0 ? response : toast.info("Nenhuma transação encontrada");
+      return response.Items.length > 0 ? response : []
     },
     refetchOnWindowFocus: false,
     refetchOnMount: false,

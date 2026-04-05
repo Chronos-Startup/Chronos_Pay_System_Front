@@ -169,15 +169,7 @@ const components = {
 
   ConfirmSignUp: {
     Header() {
-      const { tokens } = useTheme();
-      return (
-        <Heading padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`} level={3}>
-          Confirme suas informações
-        </Heading>
-      );
-    },
-    Footer() {
-      return <Text>Informações do rodapé</Text>;
+      return <Heading level={3}>Confirme suas informações</Heading>;
     },
   },
 
@@ -189,9 +181,6 @@ const components = {
           Configuração do TOTP
         </Heading>
       );
-    },
-    Footer() {
-      return <Text>Informações do rodapé</Text>;
     },
   },
 

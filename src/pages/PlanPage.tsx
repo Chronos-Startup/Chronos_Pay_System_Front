@@ -32,11 +32,11 @@ export default function PlanPage() {
       <div className="w-full grid grid-cols-4 max-md:grid-cols-1 max-lg:grid-cols-2 max-xl:grid-cols-3 gap-6">
         {/* Lista de planos */}
         {data && data.length > 0 && (
-          <div>
+          <>
             {data.map((plan: PreApprovalPlanResponse) => (
               <PlanCard key={plan.id} plan={plan} />
             ))}
-          </div>
+          </>
         )}
 
         {/* Botão novo plano */}

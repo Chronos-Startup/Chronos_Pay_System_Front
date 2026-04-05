@@ -19,6 +19,10 @@ export function AuthProvider({ children, userCognito }: { children: ReactNode; u
           getUser(),
           fetchUserAttributes(), // dados do Cognito
         ]);
+
+        if (!attributes["custom:company_name"]) {
+          toast.error("Por favor, complete as informações da sua empresa no perfil para usar o sistema.");
+        }
         setUser({
           ...response,
           name: attributes.name,
@@ -63,8 +67,6 @@ export function AuthProvider({ children, userCognito }: { children: ReactNode; u
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (!context?.user?.company?.website)
-    toast.error("Por favor, complete as informações da sua empresa no perfil para usar o sistema.");
   if (!context) throw new Error("useAuth deve ser usado dentro de AuthProvider");
   return context;
 }

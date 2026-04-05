@@ -64,7 +64,7 @@ export function PlanCard({ plan }: PlanCardInterfaceComposition) {
         <div className="bg-white/3 rounded-xl p-3 flex flex-col gap-0.5">
           <span className="text-xs text-primary font-bold">MRR</span>
           <span className="text-lg font-semibold text-white">
-            R$ {(plan?.subscribers_count * plan?.auto_recurring?.transaction_amount)?.toFixed(2) || "0"}
+            R$ {((plan?.auto_recurring?.transaction_amount || 0) * (plan?.subscribers_count || 0)).toFixed(2)}
           </span>
         </div>
       </div>
