@@ -102,7 +102,7 @@ export default function ProfilePage() {
                 label="Nome da empresa (Aparece no comprovante)"
                 type="text"
                 required
-                errors={errors?.company?.name?.message}
+                error={errors?.company?.name?.message}
                 placeholder="Ex: Chronos Pay Ltda"
                 {...register("company.name", { required: "Nome da empresa é obrigatório" })}
               />
@@ -111,7 +111,7 @@ export default function ProfilePage() {
                 type="text"
                 required
                 placeholder="https://www.chronospay.com.br"
-                errors={errors?.company?.website?.message}
+                error={errors?.company?.website?.message}
                 {...register("company.website", {
                   pattern: {
                     value: /^https?:\/\/.+/,
@@ -123,7 +123,7 @@ export default function ProfilePage() {
                 label="setor de atuação"
                 type="text"
                 placeholder="Pagamentos Digitais"
-                errors={errors?.company?.industry?.message}
+                error={errors?.company?.industry?.message}
                 {...register("company.industry")}
               />
             </div>

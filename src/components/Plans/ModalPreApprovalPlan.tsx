@@ -6,27 +6,14 @@ import { Select } from "../Select";
 import { InfoNote } from "../InfoNote";
 import { SwitchCheckBox } from "../SwitchCheckBox";
 import { Button } from "../Button";
-import { useForm } from "react-hook-form";
-import { Plan } from "../../types/PlanTypes";
-import { createPreApprovalPlan } from "../../api/PreApproval";
-import { useState } from "react";
+import { useCreatePlan } from "../../hooks/useCreatePlan";
 
 export default function ModalCreatePlan() {
-  const { register, handleSubmit } = useForm<Plan>();
-
-  async function onSubmit(data: Plan) {
-    if (!showFreeTrial) {
-      data.auto_recurring.free_trial = undefined; // remove objeto de teste se não for habilitado
-    }
-    await createPreApprovalPlan?.(data);
-    window.location.reload();
-  }
-
-  const [showFreeTrial, setShowFreeTrial] = useState<boolean | null>(false);
+  const { onSubmit, register, errors, setShowFreeTrial, showFreeTrial } = useCreatePlan();
 
   return (
     <motion.form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={onSubmit}
       layout={false}
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -38,19 +25,33 @@ export default function ModalCreatePlan() {
     >
       <div className="w-full flex flex-col gap-5">
         <h1 className="titles text-primary text-2xl">Informações Gerais</h1>
-        <InputField {...register("reason")} label="Nome do plano (Motivo)" placeholder="ex: Acesso Editorial Premium" />
+        <InputField
+          {...register("reason", { required: "Nome do plano é obrigatório" })}
+          error={errors.reason?.message}
+          label="Nome do plano (Motivo)"
+          placeholder="ex: Acesso Editorial Premium"
+        />
         <div className="flex max-md:flex-col w-full gap-5 ">
           <InputField
             {...register("auto_recurring.transaction_amount", {
               valueAsNumber: true,
+              required: "Preço é obrigatório",
             })}
+            error={errors.auto_recurring?.transaction_amount?.message}
             label="Preço (R$)"
             type="number"
             min={1}
             placeholder="R$ 0,00"
           />
           <InputField
-            {...register("back_url")}
+            {...register("back_url", {
+              required: "URL de redirecionamento é obrigatória",
+              pattern: {
+                value: /^https?:\/\/.+/,
+                message: "URL inválida — deve começar com http:// ou https://",
+              },
+            })}
+            error={errors.back_url?.message}
             label="URL DO WEBSITE (BACK_URL)"
             placeholder="https://suamarca.com.br/sucesso"
           />
