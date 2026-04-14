@@ -2,16 +2,13 @@ import { ArrowLeft, ArrowRight, ArrowUpDown, Search } from "lucide-react";
 import { Button } from "../components/Button";
 import { Table } from "../components/Table";
 import { useTransactions } from "../hooks/useTransactions";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { TransactionFilters } from "../types/transactionFilters";
 import SearchTransactions from "../components/TransactionsPage/SearchTransactions";
 import Filters from "../components/TransactionsPage/Filters";
 import { PaymentResponse } from "mercadopago/dist/clients/payment/commonTypes";
 import LoadingCircle from "../components/LoadingCircle";
-import { useAuth } from "../context/AuthContext";
-import { toast } from "sonner";
 export default function Transactions() {
-  const { user, isLoading: isUserLoading } = useAuth();
   const [page, setPage] = useState(1);
   const [filterForm, setFilterForm] = useState<TransactionFilters>({});
   const { data, isLoading } = useTransactions({
@@ -40,14 +37,6 @@ export default function Transactions() {
   const handleRefetch = useCallback(() => {
     setPage(1);
   }, []);
-
-  // useEffect(() => {
-  //   if (isUserLoading) return;
-  //   if (!user) return;
-  //   if (!user?.company?.website) {
-  //     toast.error("Por favor, complete as informações da sua empresa no perfil para usar o sistema.");
-  //   }
-  // }, [isUserLoading, user]);
 
   return (
     <div className="w-full p-6 min-h-screen flex flex-col gap-5 overflow-x-hidden">

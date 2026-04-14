@@ -26,17 +26,14 @@ export default function ModalCreatePlan() {
       <div className="w-full flex flex-col gap-5">
         <h1 className="titles text-primary text-2xl">Informações Gerais</h1>
         <InputField
-          {...register("reason", { required: "Nome do plano é obrigatório" })}
+          {...register("reason")}
           error={errors.reason?.message}
           label="Nome do plano (Motivo)"
           placeholder="ex: Acesso Editorial Premium"
         />
         <div className="flex max-md:flex-col w-full gap-5 ">
           <InputField
-            {...register("auto_recurring.transaction_amount", {
-              valueAsNumber: true,
-              required: "Preço é obrigatório",
-            })}
+            {...register("auto_recurring.transaction_amount", { valueAsNumber: true })}
             error={errors.auto_recurring?.transaction_amount?.message}
             label="Preço (R$)"
             type="number"
@@ -44,13 +41,7 @@ export default function ModalCreatePlan() {
             placeholder="R$ 0,00"
           />
           <InputField
-            {...register("back_url", {
-              required: "URL de redirecionamento é obrigatória",
-              pattern: {
-                value: /^https?:\/\/.+/,
-                message: "URL inválida — deve começar com http:// ou https://",
-              },
-            })}
+            {...register("back_url")}
             error={errors.back_url?.message}
             label="URL DO WEBSITE (BACK_URL)"
             placeholder="https://suamarca.com.br/sucesso"
@@ -62,9 +53,7 @@ export default function ModalCreatePlan() {
         <div className="flex max-md:flex-col items-start gap-5">
           <div className="flex w-full items-end gap-5">
             <InputField
-              {...register("auto_recurring.frequency", {
-                valueAsNumber: true,
-              })}
+              {...register("auto_recurring.frequency", { valueAsNumber: true })}
               className="max-w-32"
               type="number"
               min={1}
@@ -81,10 +70,9 @@ export default function ModalCreatePlan() {
           </div>
           <div className="w-full">
             <InputField
-              {...register("auto_recurring.repetitions", {
-                valueAsNumber: true,
-              })}
+              {...register("auto_recurring.repetitions", { valueAsNumber: true })}
               type="number"
+              error={errors.auto_recurring?.repetitions?.message}
               label="Número de repetições (Opcional)"
               placeholder="Infinito"
             />
@@ -105,8 +93,9 @@ export default function ModalCreatePlan() {
         >
           <InputField
             disabled={!showFreeTrial}
-            {...register("auto_recurring.free_trial.frequency")}
+            {...register("auto_recurring.free_trial.frequency", { valueAsNumber: true })}
             type="number"
+            error={showFreeTrial ? errors.auto_recurring?.free_trial?.frequency?.message : ""}
             label="Duração do teste"
             placeholder="Ex: 7"
           />

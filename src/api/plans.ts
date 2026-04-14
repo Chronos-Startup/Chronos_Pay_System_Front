@@ -1,12 +1,11 @@
 import axios from "axios";
-import { Plan } from "../types/PlanTypes";
 import { getCognitoIdToken } from "../utils/Authorizer";
 import { toast } from "sonner";
 
-export async function createPreApprovalPlan(data: Plan) {
+export async function createPlan(data: any) {
   try {
     const idToken = await getCognitoIdToken();
-    const response = await axios.post(`${import.meta.env.VITE_API_URL}/preapproval_plan`, data, {
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/plans`, data, {
       headers: {
         Authorization: `Bearer ${idToken}`,
       },
@@ -23,7 +22,7 @@ export async function createPreApprovalPlan(data: Plan) {
 export async function fetchPlans() {
   try {
     const idToken = await getCognitoIdToken();
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/preapproval_plan`, {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/plans`, {
       headers: {
         Authorization: `Bearer ${idToken}`,
       },
@@ -39,7 +38,7 @@ export async function fetchSubscriptionsByPlanId(preApprovalPlanId: string) {
   try {
     const idToken = await getCognitoIdToken();
     const response = await axios.get(
-      `${import.meta.env.VITE_API_URL}/preapproval_subscribes?preApprovalPlanId=${preApprovalPlanId}`,
+      `${import.meta.env.VITE_API_URL}/plans/${preApprovalPlanId}/subscriptions`,
       {
         headers: {
           Authorization: `Bearer ${idToken}`,

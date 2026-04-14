@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchSubscriptionsByPlanId } from "../api/PreApproval";
+import { fetchSubscriptionsByPlanId } from "../api/plans";
 
 export function useSubscribers(preApprovalPlanId: string) {
   return useQuery({

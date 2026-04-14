@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRef } from "react";
 import { fetchTransactionsWithPagination } from "../api/fetchTransactions";
-import { toast } from "sonner";
-import { fetchPlans } from "../api/PreApproval";
+import { fetchPlans } from "../api/plans";
 
 interface UseTransactionsProps {
   page: number;
@@ -29,7 +28,7 @@ export function useTransactions({ page, pageSize, filters }: UseTransactionsProp
         cursorsRef.current[page] = response.LastEvaluatedKey;
       }
 
-      return response.Items.length > 0 ? response : []
+      return response.Items.length > 0 ? response : [];
     },
     refetchOnWindowFocus: false,
     refetchOnMount: false,
