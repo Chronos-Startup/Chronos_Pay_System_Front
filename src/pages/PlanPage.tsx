@@ -1,12 +1,12 @@
 import { PlusCircle, Users } from "lucide-react";
 import { PlanCard } from "../components/Plans/PlanCard";
-import { usePlans } from "../hooks/useTransactions";
 import { useState } from "react";
 import { Modal } from "../components/Modal";
 import { AnimatePresence } from "motion/react";
 import { PreApprovalPlanResponse } from "mercadopago/dist/clients/preApprovalPlan/commonTypes";
 import LoadingCircle from "../components/LoadingCircle";
 import ModalPreApprovalPlan from "../components/Plans/ModalPreApprovalPlan";
+import { usePlans } from "../hooks/usePlans";
 
 export default function PlanPage() {
   const { data, isLoading } = usePlans();

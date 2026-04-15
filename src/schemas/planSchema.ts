@@ -7,6 +7,7 @@ const optionalPositiveNumber = z.preprocess((val) => {
 }, z.number().min(1, "Deve ser maior que 0").optional());
 
 export const planSchema = z.object({
+  id: z.string().optional(),
   reason: z.string().min(1, "Nome do plano é obrigatório"),
   back_url: z.url({ protocol: /^https$/, message: "URL Inválida — deve usar HTTPS" }),
   auto_recurring: z.object({

@@ -6,7 +6,7 @@ import { Select } from "../Select";
 import { InfoNote } from "../InfoNote";
 import { SwitchCheckBox } from "../SwitchCheckBox";
 import { Button } from "../Button";
-import { useCreatePlan } from "../../hooks/useCreatePlan";
+import { useCreatePlan } from "../../hooks/usePlans";
 
 export default function ModalCreatePlan() {
   const { onSubmit, register, errors, setShowFreeTrial, showFreeTrial } = useCreatePlan();
@@ -57,7 +57,6 @@ export default function ModalCreatePlan() {
               className="max-w-32"
               type="number"
               min={1}
-              defaultValue={1}
               label="FREQUÊNCIA"
             />
 
@@ -83,7 +82,12 @@ export default function ModalCreatePlan() {
       <div className="w-full flex flex-col gap-5">
         <div className="flex w-full justify-between gap-3">
           <div>
-            <h1 className="titles text-primary text-2xl">Incentivos</h1>
+            <h1 className="titles text-primary text-2xl flex items-center gap-2">
+              Incentivos
+              <span className="text-xs font-medium px-2 py-1 rounded bg-gray-500/15 text-gray-400 border border-gray-500/20">
+                Imutável após criação
+              </span>
+            </h1>
             <span className="max-md:text-sm">Ofereça um período de teste para aumentar a conversão</span>
           </div>
           <SwitchCheckBox onChange={(e) => setShowFreeTrial(e.target.checked)} />

@@ -34,19 +34,3 @@ export function useTransactions({ page, pageSize, filters }: UseTransactionsProp
     refetchOnMount: false,
   });
 }
-
-export function usePlans() {
-  return useQuery({
-    queryKey: ["plans"],
-    queryFn: async () => {
-      const response = await fetchPlans();
-      return response.Items ?? [];
-    },
-    retry: false,
-    staleTime: Infinity, // nunca considera stale
-    gcTime: Infinity, // mantém em cache
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-  });
-}
