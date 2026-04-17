@@ -40,10 +40,12 @@ export default function Transactions() {
 
   return (
     <div className="w-full p-6 min-h-screen flex flex-col gap-5 overflow-x-hidden">
-      <div className="flex justify-between md:max-h-14 max-md:flex-col max-md:gap-5">
+      <div className="flex justify-between max-md:flex-col max-md:gap-5">
         <div>
-          <h1 className="titles text-3xl text-primary/90">Transações</h1>
-          <p className="subtitles text-wrap text-white/90">Visualize e gerencie todas as transações da sua conta.</p>
+          <h1 className="titles text-3xl mb-3">
+            TRANSAÇÕES <span className="text-primary">FINANCEIRAS</span>
+          </h1>
+          <p className="subtitles text-wrap text-white/90">Visualize e gerencie todas as transações da sua conta em tempo real.</p>
         </div>
         {/* <div className="flex gap-3">
           <Button.Root className="text-charcoal">
@@ -53,7 +55,7 @@ export default function Transactions() {
         </div> */}
       </div>
 
-      <div className="bg-midnight-light px-4 py-2 space-y-5 rounded-xl">
+      <div className="glass-card p-6 rounded-3xl border border-white/5 space-y-4">
         <SearchTransactions filterForm={filterForm} handleFilter={handleFilter} />
 
         <Filters filterForm={filterForm} setFilterForm={setFilterForm} />
@@ -72,8 +74,7 @@ export default function Transactions() {
               <Table.Head.Data>Método</Table.Head.Data>
               <Table.Head.Data>Valor</Table.Head.Data>
               <Table.Head.Data>Status</Table.Head.Data>
-              <Table.Head.Data>Data</Table.Head.Data>
-              <Table.Head.Data></Table.Head.Data>
+              <Table.Head.Data className="text-right">Data</Table.Head.Data>
             </Table.Head.Root>
             <Table.Body.Root>
               {transactions.map((transaction: PaymentResponse) => (

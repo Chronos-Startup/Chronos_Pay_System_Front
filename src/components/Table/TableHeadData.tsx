@@ -7,5 +7,9 @@ interface TableHeadDataComposition {
 }
 
 export default function TableHeadData({ children, className }: TableHeadDataComposition) {
-  return <th className={twMerge("px-6 py-4", className)}>{children}</th>;
+  return (
+    <th className={twMerge("px-8 py-5 text-[10px] text-left font-bold text-text-gray uppercase tracking-[0.2em]", className)}>
+      {children}
+    </th>
+  );
 }

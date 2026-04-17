@@ -45,12 +45,12 @@ body {
 .tech-grid {
   background-size: 40px 40px;
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
 }
 
 .glass-card {
-  background: rgba(21, 30, 50, 0.6);
+  background: rgba(21, 30, 50, 0.4);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -61,7 +61,7 @@ body {
 
 @layer components {
   .inputs {
-    @apply w-full  px-3 py-3 focus:outline-none focus:ring-1 focus:ring-blue-100 bg-slate-800/50 rounded border border-slate-700/50 placeholder:text-slate-400;
+    @apply w-full h-full bg-midnight-dark/50 flex border border-charcoal rounded-2xl py-3 pr-4 pl-6 text-sm text-white focus:outline-none focus:border-primary/40 items-center appearance-none cursor-pointer;
   }
 
   .subtitles {
@@ -135,12 +135,12 @@ b {
 }
 
 /* Ativo */
-.switch input:checked+.slider {
+.switch input:checked + .slider {
   background-color: var(--color-primary);
   border: 1px solid transparent;
 }
 
 /* Movimento */
-.switch input:checked+.slider::before {
+.switch input:checked + .slider::before {
   transform: translate(18px, -50%);
 }

@@ -13,7 +13,8 @@ export function useCreatePlan() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors , isSubmitting}
+    ,
   } = useForm<Plan>({ resolver: zodResolver(planSchema), defaultValues: { auto_recurring: { frequency: 1 } } });
 
   async function onSubmit(data: Plan) {
@@ -27,6 +28,7 @@ export function useCreatePlan() {
     register,
     errors,
     showFreeTrial,
+    isSubmitting,
     setShowFreeTrial: setShowFreeTrial,
     onSubmit: handleSubmit(onSubmit),
   };
@@ -55,13 +57,14 @@ export function useUpdatePlan(plan: PreApprovalPlanResponse) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<PreApprovalPlanResponse>({ resolver: zodResolver(planSchema), defaultValues: plan });
 
   async function onSubmit(data: PreApprovalPlanResponse) {
     console.log(data);
     if (!showFreeTrial || !data.auto_recurring!.free_trial?.frequency)
-      data.auto_recurring.free_trial.frequency = undefined;
+      data.auto_recurring.free_trial = undefined;
+
     await updatePlanById?.(data.id!, data);
     window.location.reload();
   }
@@ -70,6 +73,7 @@ export function useUpdatePlan(plan: PreApprovalPlanResponse) {
     register,
     errors,
     showFreeTrial,
+    isSubmitting,
     setShowFreeTrial: setShowFreeTrial,
     onSubmit: handleSubmit(onSubmit),
   };

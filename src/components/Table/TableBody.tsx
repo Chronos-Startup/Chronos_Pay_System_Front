@@ -8,6 +8,6 @@ interface TableBodyComposition {
 
 export default function TableBody({ children, className }: TableBodyComposition) {
   return (
-    <tbody className={twMerge("bg-charcoal text-left text-white text-xs text-nowrap", className)}>{children}</tbody>
+    <tbody className={twMerge("glass-card divide-y divide-white/5 text-xs", className)}>{children}</tbody>
   );
 }

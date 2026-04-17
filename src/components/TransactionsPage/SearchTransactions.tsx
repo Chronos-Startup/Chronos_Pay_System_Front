@@ -28,18 +28,18 @@ export default function SearchTransactions({ filterForm, handleFilter }: SearchT
 
   return (
     <div className="flex gap-8 max-lg:flex-col items-end justify-between">
-      <div className="inputs border-primary/20 h-full flex text-primary group bg-midnight-dark">
+      <div className="inputs">
         <input
           type="search"
-          className="w-full placeholder:text-text-gray focus:outline-none"
+          className="w-full focus:outline-none"
           placeholder="Buscar por Nome..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <Search />
+        <Search size={18} className="text-text-gray group-focus-within:text-primary transition-colors" />
       </div>
       <Select
-        className="bg-midnight-dark"
+        className="bg-midnight-dark/50"
         icon={ChartBarIcon}
         value={filterForm.status ?? ""}
         onChange={(e) => handleFilter("status", e.target.value)}
@@ -47,7 +47,7 @@ export default function SearchTransactions({ filterForm, handleFilter }: SearchT
         options={labels}
       />
       <Select
-        className="bg-midnight-dark"
+        className="bg-midnight-dark/50"
         icon={CreditCard}
         value={filterForm.payment_method_id ?? ""}
         onChange={(e) => handleFilter("payment_method_id", e.target.value)}

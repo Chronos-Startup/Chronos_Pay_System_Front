@@ -10,7 +10,7 @@ export default function ButtonRoot({ className, children, ...rest }: ButtonRootC
   return (
     <button
       className={twMerge(
-        "p-4 flex gap-2 max-md:justify-center cursor-pointer hover:bg-primary-hover transition-all duration-300 items-center text-nowrap max-md:p-2 rounded-lg bg-primary",
+        "p-4 flex gap-2 max-md:justify-center cursor-pointer hover:bg-primary-hover transition-all duration-300 items-center text-nowrap max-md:p-2 rounded-2xl bg-primary",
         className,
       )}
       {...rest}

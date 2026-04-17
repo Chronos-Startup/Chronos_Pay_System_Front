@@ -31,7 +31,7 @@ function HeaderDashboard({ signOut }: HeaderDashboardProps) {
   }
 
   return (
-    <header className="w-full py-3 px-6 flex gap-5 justify-between items-center bg-charcoal/50">
+    <header className="w-full py-3 px-6 flex gap-5 justify-between items-center bg-midnight-dark/50 border-b border-charcoal">
       <div className="flex items-center gap-3">
         <div className="p-2 flex gap-2 items-center font-bold uppercase text-xs bg-primary/20 border text-primary border-primary/50 rounded">
           <Clock />

@@ -7,5 +7,5 @@ interface TableBodyDataComposition extends TdHTMLAttributes<HTMLTableDataCellEle
 }
 
 export default function TableBodyData({ children, className }: TableBodyDataComposition) {
-  return <td className={twMerge("px-6 py-4", className)}>{children}</td>;
+  return <td className={twMerge("px-8 py-6", className)}>{children}</td>;
 }

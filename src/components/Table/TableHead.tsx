@@ -8,8 +8,8 @@ interface TableHeadComposition {
 
 export default function TableHead({ children, className }: TableHeadComposition) {
   return (
-    <thead className={twMerge("text-text-gray rounded-xl text-left text-nowrap uppercase text-xs", className)}>
-      <tr>{children}</tr>
+    <thead>
+      <tr className={twMerge("border-b border-charcoal bg-gray-800", className)}>{children}</tr>
     </thead>
   );
 }

@@ -1,4 +1,4 @@
-import { Check, ChevronDown } from "lucide-react";
+import { Check, ChevronDown, Loader2 } from "lucide-react";
 import InputField from "../InputField";
 import { TIME_UNITS_LABELS } from "../../constants/constants";
 import { motion } from "motion/react";
@@ -8,8 +8,12 @@ import { SwitchCheckBox } from "../SwitchCheckBox";
 import { Button } from "../Button";
 import { useCreatePlan } from "../../hooks/usePlans";
 
-export default function ModalCreatePlan() {
-  const { onSubmit, register, errors, setShowFreeTrial, showFreeTrial } = useCreatePlan();
+interface ModalCreatePlanProps {
+  onClose: () => void;
+}
+
+export default function ModalCreatePlan({ onClose }: ModalCreatePlanProps) {
+  const { onSubmit, register, errors, setShowFreeTrial, showFreeTrial, isSubmitting } = useCreatePlan();
 
   return (
     <motion.form
@@ -117,10 +121,18 @@ export default function ModalCreatePlan() {
         frequências de cobrança estejam alinhadas com seus contratos de nível de serviço.
       </InfoNote>
 
-      <Button.Root type="submit" className="w-full flex justify-center">
-        <Button.Icon icon={Check} />
-        <span className="text-black">Criar</span>
-      </Button.Root>
+      <div className="flex gap-5">
+        <Button.Root
+          onClick={onClose}
+          className="flex justify-center py-4 bg-charcoal w-full hover:bg-zinc-700 rounded-2xl font-semibold transition-all"
+        >
+          <span className="text-white">Cancelar</span>
+        </Button.Root>
+        <Button.Root type="submit" className="w-full flex justify-center">
+          {isSubmitting ? <Loader2 className="animate-spin" /> : <Check />}
+          <span className="text-black">Criar</span>
+        </Button.Root>
+      </div>
     </motion.form>
   );
 }

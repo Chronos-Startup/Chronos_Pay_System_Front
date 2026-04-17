@@ -5,8 +5,8 @@ import { Modal } from "../components/Modal";
 import { AnimatePresence } from "motion/react";
 import { PreApprovalPlanResponse } from "mercadopago/dist/clients/preApprovalPlan/commonTypes";
 import LoadingCircle from "../components/LoadingCircle";
-import ModalPreApprovalPlan from "../components/Plans/ModalPreApprovalPlan";
 import { usePlans } from "../hooks/usePlans";
+import ModalCreatePlan from "../components/Plans/ModalCreatePlan";
 
 export default function PlanPage() {
   const { data, isLoading } = usePlans();
@@ -18,7 +18,7 @@ export default function PlanPage() {
       <div className="flex justify-between xl:items-center max-md:flex-col max-md:gap-5">
         <div className="max-w-2xl space-y-2">
           <h1 className="titles text-3xl">
-            Planos e <span className="text-primary">Assinaturas</span>
+            PLANOS E <span className="text-primary">ASSINATURAS</span>
           </h1>
           <p className="subtitles text-white/80 text-wrap">
             Gerencie seu catálogo de produtos e visualize o crescimento da receita recorrente.
@@ -43,7 +43,7 @@ export default function PlanPage() {
         {!isLoading && (
           <button
             onClick={() => setShow(true)}
-            className="border-2 cursor-pointer hover:bg-primary/5 hover:border-primary/60 transition-all border-dashed border-primary/40 p-6 gap-4 rounded-2xl flex flex-col items-center justify-center"
+            className="border-2 cursor-pointer hover:bg-primary/5 hover:border-primary/60  transition-all border-dashed border-primary/40 p-6 gap-4 rounded-2xl flex flex-col items-center justify-center"
           >
             <div className="p-3 text-primary bg-primary/10 border border-primary/20 rounded-xl">
               <PlusCircle className="w-5 h-5" />
@@ -72,7 +72,7 @@ export default function PlanPage() {
       <AnimatePresence>
         {show && (
           <Modal setShow={setShow}>
-            <ModalPreApprovalPlan />
+            <ModalCreatePlan onClose={() => setShow(false)} />
           </Modal>
         )}
       </AnimatePresence>
