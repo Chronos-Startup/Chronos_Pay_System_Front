@@ -4,7 +4,6 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-
 import LoadingPage from "../pages/LoadingPage";
 import SettingsPage from "../pages/SettingsPage";
 
-const MercadoPagoConnect = lazy(() => import("../pages/MercadoPagoConnect"));
 const Transactions = lazy(() => import("../pages/Transactions"));
 const ProfilePage = lazy(() => import("../pages/ProfilePage"));
 const PlanPage = lazy(() => import("../pages/PlanPage"));
@@ -25,7 +24,6 @@ export default function AppRoutes({ user, signOut }: { user?: AuthUser; signOut?
   return (
     <Suspense fallback={<LoadingPage />}>
       <Routes>
-        <Route path="/oauth/mercadopago" element={<MercadoPagoConnect userCognito={user} />} />
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/plans" element={<PlanPage />} />
         <Route path="/plans/:plan_id/subscribers" element={<SubscribersPlanPage />} />
