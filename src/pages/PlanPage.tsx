@@ -2,29 +2,26 @@ import { PlusCircle, Users } from "lucide-react";
 import { PlanCard } from "../components/Plans/PlanCard";
 import { useState } from "react";
 import { Modal } from "../components/Modal";
-import { AnimatePresence } from "motion/react";
+import { AnimatePresence} from "motion/react";
 import { PreApprovalPlanResponse } from "mercadopago/dist/clients/preApprovalPlan/commonTypes";
 import LoadingCircle from "../components/LoadingCircle";
 import { usePlans } from "../hooks/usePlans";
 import ModalCreatePlan from "../components/Plans/ModalCreatePlan";
+import { PageLayout } from "../layout/Page";
 
 export default function PlanPage() {
   const { data, isLoading } = usePlans();
   const [show, setShow] = useState<boolean | null>(null);
-
   return (
-    <div className="w-full p-6 min-h-screen flex flex-col gap-10 overflow-x-hidden">
-      {/* Header */}
-      <div className="flex justify-between xl:items-center max-md:flex-col max-md:gap-5">
-        <div className="max-w-2xl space-y-2">
-          <h1 className="titles text-3xl">
-            PLANOS E <span className="text-primary">ASSINATURAS</span>
-          </h1>
-          <p className="subtitles text-white/80 text-wrap">
-            Gerencie seu catálogo de produtos e visualize o crescimento da receita recorrente.
-          </p>
-        </div>
-      </div>
+    <PageLayout.Root>
+      <PageLayout.Header>
+        <PageLayout.Title>
+          PLANOS E <span className="text-primary">ASSINATURAS</span>
+        </PageLayout.Title>
+        <PageLayout.Subtitle>
+          Gerencie seu catálogo de produtos e visualize o crescimento da receita recorrente.
+        </PageLayout.Subtitle>
+      </PageLayout.Header>
 
       {/* Loading */}
       {isLoading && <LoadingCircle />}
@@ -43,7 +40,7 @@ export default function PlanPage() {
         {!isLoading && (
           <button
             onClick={() => setShow(true)}
-            className="border-2 cursor-pointer hover:bg-primary/5 hover:border-primary/60  transition-all border-dashed border-primary/40 p-6 gap-4 rounded-2xl flex flex-col items-center justify-center"
+            className="border-2 cursor-pointer shadow-chronos hover:bg-primary/5 hover:border-primary/60  transition-all border-dashed border-primary/40 p-6 gap-4 rounded-2xl flex flex-col items-center justify-center"
           >
             <div className="p-3 text-primary bg-primary/10 border border-primary/20 rounded-xl">
               <PlusCircle className="w-5 h-5" />
@@ -76,6 +73,6 @@ export default function PlanPage() {
           </Modal>
         )}
       </AnimatePresence>
-    </div>
+    </PageLayout.Root>
   );
 }

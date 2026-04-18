@@ -1,20 +1,22 @@
-import { Clock, ShieldCheck } from "lucide-react";
+import { Clock, Menu } from "lucide-react";
+interface MobileHeader {
+  setIsSidebarOpen: () => void;
+}
 
-export default function Header() {
+export default function MobileHeader({ setIsSidebarOpen }: MobileHeader) {
   return (
-    <header className="w-full p-3 flex gap-5 justify-between bg-charcoal/50">
-      <div className="flex items-center gap-3">
-        <div className="p-2 flex gap-2 items-center font-bold uppercase text-xs bg-primary/20 border text-primary border-primary/50 rounded">
-          <Clock />
+    <header className="xl:hidden px-6 flex items-center justify-between py-4 border-b border-charcoal">
+      <div className="flex items-center gap-2">
+        <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
+          <Clock size={18} className="text-midnight-dark font-bold" />
         </div>
-        <p className="uppercase text-xl max-md:text-md text-slate-100 font-extrabold">
-          CHRONOS<span className="text-primary">PAY</span>
-        </p>
+        <span className="font-display font-bold text-white text-sm tracking-tight uppercase">
+          CHRONOS<span className="text-primary font-light">PAY</span>
+        </span>
       </div>
-      <div className="p-2 flex gap-2 items-center font-bold uppercase text-xs bg-green-400/20 border text-green-400 border-green-400/50 rounded">
-        <ShieldCheck />
-        <p>Ambiente Seguro</p>
-      </div>
+      <button onClick={setIsSidebarOpen} className="p-2 bg-midnight-light rounded-lg text-text-gray hover:text-white">
+        <Menu size={24} />
+      </button>
     </header>
   );
 }

@@ -11,6 +11,9 @@ import { AuthProvider } from "./context/AuthContext";
 import AppRoutes from "./routes/routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { I18n } from "aws-amplify/utils";
+import Sidebar from "./layout/Sidebar";
+import MobileHeader from "./layout/Header";
+import { useState } from "react";
 
 Amplify.configure(outputs);
 I18n.setLanguage("pt-BR");
@@ -44,6 +47,7 @@ I18n.putVocabulariesForLanguage("pt-BR", {
 const queryClient = new QueryClient();
 
 export default function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
     <div className="tech-grid h-full min-h-screen flex items-center justify-center">
       <Authenticator className="p-6" formFields={formFields} components={components}>
@@ -51,9 +55,12 @@ export default function App() {
           <AuthProvider userCognito={user}>
             <BrowserRouter>
               <QueryClientProvider client={queryClient}>
-                <main className="w-full">
-                  <HeaderDashboard signOut={signOut} userCognito={user} />
-                  <AppRoutes user={user} signOut={signOut} />
+                <main className="w-full flex justify-end">
+                  <Sidebar isOpen={isSidebarOpen} logOut={signOut} onClose={() => setIsSidebarOpen(false)} />
+                  <div className="w-full overflow-x-hidden xl:ml-72">
+                    <MobileHeader setIsSidebarOpen={() => setIsSidebarOpen(true)} />
+                    <AppRoutes user={user} signOut={signOut} />
+                  </div>
                 </main>
               </QueryClientProvider>
             </BrowserRouter>

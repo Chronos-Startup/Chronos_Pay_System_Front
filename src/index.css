@@ -9,16 +9,22 @@
   --color-midnight-light: #151e32;
   --color-charcoal: #1e293b;
   --color-text-gray: #94a3b8;
+  --color-glass: rgba(21, 30, 50, 0.4);
 
   --color-surface-glass: rgba(30, 41, 59, 0.4);
+
+  /* 🌑 Shadows */
+  --shadow-chronos: 0 20px 50px rgba(0, 0, 0, 0.5);
 
   /* 🔤 Fonts */
   --font-display: "Roboto", sans-serif;
   --font-body: "Inter", sans-serif;
   --text-md: 16px;
+
   /* 🧩 Backgrounds */
   --background-image-grid-pattern:
-    linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px);
+    linear-gradient(to right, #1e293b 1px, transparent 1px),
+    linear-gradient(to bottom, #1e293b 1px, transparent 1px);
 }
 
 body {
@@ -50,18 +56,16 @@ body {
 }
 
 .glass-card {
-  background: rgba(21, 30, 50, 0.4);
+  background: var(--color-glass);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-chronos)
 }
 
 @layer components {
   .inputs {
-    @apply w-full h-full bg-midnight-dark/50 flex border border-charcoal rounded-2xl py-3 pr-4 pl-6 text-sm text-white focus:outline-none focus:border-primary/40 items-center appearance-none cursor-pointer;
+    @apply w-full h-full bg-midnight-dark/50 flex border border-charcoal rounded-2xl py-3 pr-4 pl-6 text-sm text-white focus:outline-none focus:border-primary/40 items-center appearance-none;
   }
 
   .subtitles {

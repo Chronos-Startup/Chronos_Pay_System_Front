@@ -2,6 +2,7 @@ import { AuthUser } from "aws-amplify/auth";
 import { useEffect, lazy, Suspense } from "react";
 import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import LoadingPage from "../pages/LoadingPage";
+import SettingsPage from "../pages/SettingsPage";
 
 const MercadoPagoConnect = lazy(() => import("../pages/MercadoPagoConnect"));
 const Transactions = lazy(() => import("../pages/Transactions"));
@@ -30,7 +31,7 @@ export default function AppRoutes({ user, signOut }: { user?: AuthUser; signOut?
         <Route path="/plans/:plan_id/subscribers" element={<SubscribersPlanPage />} />
         <Route path="/reports" element={<div>Relatórios (em breve)</div>} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/settings" element={<div>Configurações (em breve)</div>} />
+        <Route path="/settings" element={<SettingsPage userCognito={user} />} />
         <Route path="*" element={<Navigate to="/transactions" replace />} />
       </Routes>
     </Suspense>

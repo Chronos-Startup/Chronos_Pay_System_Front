@@ -39,7 +39,6 @@ export const errorMap: Record<string, string> = {
   cancelled: "Pagamento cancelado.",
   refunded: "Pagamento reembolsado.",
   in_mediation: "Pagamento em disputa.",
-  
 };
 
 export const stylesStatus = {
@@ -86,3 +85,10 @@ export const TIME_UNITS_LABELS = {
   months: "Meses",
   days: "Dias",
 } as const;
+
+export const motionPage = {
+  initial: { opacity: 0, x: 20 },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: -20 },
+  transition: { duration: 0.2 },
+};

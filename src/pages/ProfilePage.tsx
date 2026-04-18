@@ -1,4 +1,4 @@
-import { Building2, Save, Upload } from "lucide-react";
+import { Building2, Save, Trash, Upload } from "lucide-react";
 import { Button } from "../components/Button";
 import { useAuth } from "../context/AuthContext";
 import { useEffect, useRef } from "react";
@@ -7,6 +7,8 @@ import ButtonIcon from "../components/Button/ButtonIcon";
 import { useForm } from "react-hook-form";
 import { AuthUserDynamo } from "../types/auth";
 import InputField from "../components/InputField";
+import TextUppercase from "../components/TextUppercase";
+import { PageLayout } from "../layout/Page";
 
 export default function ProfilePage() {
   const { user, updateUser } = useAuth();
@@ -33,52 +35,74 @@ export default function ProfilePage() {
   }, [user, reset]);
 
   async function onSubmit(data: AuthUserDynamo) {
-    console.log(data);
     updateUser?.(data);
   }
-
   return (
-    <div className="min-h-screen">
-      <form onSubmit={handleSubmit(onSubmit)} className="max-w-6xl flex flex-col gap-10 p-6">
+    <PageLayout.Root>
+      <PageLayout.Header>
+        <PageLayout.Title>
+          MINHA <span className="text-primary">CONTA</span>
+        </PageLayout.Title>
+        <PageLayout.Subtitle>Gerencie sua identidade visual e dados corporativos da plataforma.</PageLayout.Subtitle>
+      </PageLayout.Header>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="xl:max-w-6xl flex flex-col gap-10">
         <input type="file" ref={inputRef} accept="image/*" className="hidden" onChange={handleImageChange} />
 
         {/* Foto de perfil */}
-        <div className="glass-card flex max-md:flex-col gap-10 p-10 rounded-xl">
-          <div className="w-32 h-32 rounded-2xl bg-primary/30 shrink-0 overflow-hidden border-2 border-primary">
-            {imageUrl && <img src={imageUrl} alt="Foto de perfil" className="w-full h-full object-cover " />}
+        <PageLayout.Card className="p-10 gap-10 relative group">
+          <div className="w-32 h-32 md:w-44 md:h-44 rounded-[2.5rem] bg-midnight-light border-2 border-primary/20 flex items-center justify-center shadow-chronos group-hover/logo:border-primary/40 transition-all">
+            {imageUrl ? (
+              <img src={imageUrl} alt="Foto de perfil" className="w-full h-full object-cover " />
+            ) : (
+              <div className="text-center space-y-2 opacity-40 group-hover/logo:opacity-100 transition-opacity">
+                <Building2 size={40} className="mx-auto text-primary" strokeWidth={1.5} />
+                <span className="text-[10px] uppercase font-bold tracking-widest block">Sem Logo</span>
+              </div>
+            )}
           </div>
-          <div className="space-y-3">
-            <h1 className="text-white font-bold text-xl">LOGO da sua empresa</h1>
-            <p className="text-text-gray text-sm">
-              Formatos recomendados: JPG, PNG ou WEBP. <br />
-              Tamanho máximo de 2MB. Dimensões ideais 400x400px.
-            </p>
+          <div className="flex-1 space-y-6 text-center md:text-left">
+            <div>
+              <PageLayout.Title className="text-xl">LOGO DA SUA EMPRESA</PageLayout.Title>
+              <PageLayout.Subtitle className="text-text-gray text-xs max-w-md leading-relaxed">
+                Esta logo será exibida nos seus links de pagamento e comprovantes enviados aos clientes.
+              </PageLayout.Subtitle>
+              <p className="text-[10px] text-text-gray/40 mt-3 uppercase tracking-widest font-bold">
+                Formatos recomendados: JPG, PNG ou WEBP. Máx. 2MB.
+              </p>
+            </div>
             <div className="flex max-md:flex-col gap-4">
               <Button.Root
                 type="button"
+                aria-label="Trocar logo da empresa"
                 onClick={() => inputRef.current?.click()}
-                className="text-black p-3 rounded-full"
+                className="text-black p-3"
               >
                 <Button.Icon icon={Upload} />
                 Trocar Foto
               </Button.Root>
-              <Button.Root type="button" className="bg-transparent p-3 rounded-full border hover:bg-text-gray/20">
+              <Button.Root
+                type="button"
+                className="bg-transparent p-3  border-text-gray/40 border hover:bg-text-gray/20"
+              >
+                <Button.Icon icon={Trash} className="text-text-gray" />
                 Remover
               </Button.Root>
             </div>
           </div>
-        </div>
+        </PageLayout.Card>
 
-        <div className="flex w-full gap-10 overflow-hidden max-lg:flex-col">
+        <div className="flex w-full gap-10 max-lg:flex-col">
           {/* Informações Pessoais */}
-          <div className="glass-card flex-1 flex flex-col gap-6 p-10 rounded-xl">
-            <div className="border-b border-text-gray/20 pb-3 flex gap-3 items-center">
+          <PageLayout.Card className="flex-col p-10 gap-10 flex-1">
+            <div className="border-b border-text-gray/20 pb-3 w-full flex gap-3 items-center">
               <Building2 className="text-primary" />
-              <h2 className="text-white font-bold">
-                Informações Pessoais <span className="text-xs text-white/60">(Imutável)</span>
-              </h2>
+              <div>
+                <h2 className="text-white font-bold">Informações Pessoais</h2>
+                <span className="text-xs text-white/60">(Imutável)</span>
+              </div>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex w-full flex-col gap-4">
               <InputField label="Nome completo" placeholder="Seu nome" readOnly disabled value={user?.name} />
               <InputField
                 label="E-mail profissional"
@@ -89,10 +113,10 @@ export default function ProfilePage() {
                 value={user?.email}
               />
             </div>
-          </div>
+          </PageLayout.Card>
 
           {/* Dados Corporativos */}
-          <div className="glass-card flex-1 flex flex-col gap-6 p-10 rounded-xl">
+          <PageLayout.Card className="flex-col p-10 gap-10 flex-1">
             <div className="border-b border-text-gray/20 pb-3 flex gap-3 items-center">
               <Building2 className="text-primary" />
               <h2 className="text-white font-bold">Dados Corporativos</h2>
@@ -127,7 +151,7 @@ export default function ProfilePage() {
                 {...register("company.industry")}
               />
             </div>
-          </div>
+          </PageLayout.Card>
         </div>
         <Button.Root
           type="submit"
@@ -135,9 +159,9 @@ export default function ProfilePage() {
           className="max-w-xs max-lg:max-w-full flex justify-center"
         >
           <ButtonIcon icon={Save} />
-          <span className="text-black font-semibold">Salvar</span>
+          <TextUppercase className="text-black">Salvar Alterações</TextUppercase>
         </Button.Root>
       </form>
-    </div>
+    </PageLayout.Root>
   );
 }

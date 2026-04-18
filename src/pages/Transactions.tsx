@@ -8,6 +8,7 @@ import SearchTransactions from "../components/TransactionsPage/SearchTransaction
 import Filters from "../components/TransactionsPage/Filters";
 import { PaymentResponse } from "mercadopago/dist/clients/payment/commonTypes";
 import LoadingCircle from "../components/LoadingCircle";
+import { PageLayout } from "../layout/Page";
 export default function Transactions() {
   const [page, setPage] = useState(1);
   const [filterForm, setFilterForm] = useState<TransactionFilters>({});
@@ -37,23 +38,16 @@ export default function Transactions() {
   const handleRefetch = useCallback(() => {
     setPage(1);
   }, []);
-
   return (
-    <div className="w-full p-6 min-h-screen flex flex-col gap-5 overflow-x-hidden">
-      <div className="flex justify-between max-md:flex-col max-md:gap-5">
-        <div>
-          <h1 className="titles text-3xl mb-3">
-            TRANSAÇÕES <span className="text-primary">FINANCEIRAS</span>
-          </h1>
-          <p className="subtitles text-wrap text-white/90">Visualize e gerencie todas as transações da sua conta em tempo real.</p>
-        </div>
-        {/* <div className="flex gap-3">
-          <Button.Root className="text-charcoal">
-            <Button.Icon className="text-charcoal" icon={Download} />
-            Exportar CSV
-          </Button.Root>
-        </div> */}
-      </div>
+    <PageLayout.Root>
+      <PageLayout.Header>
+        <PageLayout.Title>
+          TRANSAÇÕES <span className="text-primary">FINANCEIRAS</span>
+        </PageLayout.Title>
+        <PageLayout.Subtitle>
+          Visualize e gerencie todas as transações da sua conta em tempo real.
+        </PageLayout.Subtitle>
+      </PageLayout.Header>
 
       <div className="glass-card p-6 rounded-3xl border border-white/5 space-y-4">
         <SearchTransactions filterForm={filterForm} handleFilter={handleFilter} />
@@ -119,6 +113,6 @@ export default function Transactions() {
           )}
         </div>
       </div>
-    </div>
+    </PageLayout.Root>
   );
 }

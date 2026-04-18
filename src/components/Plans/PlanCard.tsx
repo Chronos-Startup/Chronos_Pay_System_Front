@@ -40,14 +40,14 @@ export function PlanCard({ plan }: PlanCardInterfaceComposition) {
   const URL_TO_PREAPPROVAL = `https://checkout.chronospay.ufersa.dev.br/plans/${user?.mp.public_key}/${plan.id}/${user?.user_id}`;
 
   return (
-    <div className="bg-midnight-light/50 hover:ring-primary/50 ring ring-transparent  hover:-translate-y-3 transition-all duration-300 p-5 gap-4 rounded-2xl flex flex-col justify-between">
+    <div className="bg-midnight-light/50 shadow-chronos hover:ring-primary/50 ring ring-transparent  hover:-translate-y-3 transition-all duration-300 p-5 gap-4 rounded-2xl flex flex-col justify-between">
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <h3 className="font-display font-semibold text-lg text-white">{plan.reason}</h3>
             <button
               onClick={handleShowEditModal}
-              className="p-1.5 text-text-gray hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
+              className="p-1.5 text-text-gray cursor-pointer hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
             >
               <Edit2 size={14} />
             </button>

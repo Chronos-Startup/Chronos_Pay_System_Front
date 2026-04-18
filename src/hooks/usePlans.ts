@@ -63,7 +63,7 @@ export function useUpdatePlan(plan: PreApprovalPlanResponse) {
   async function onSubmit(data: PreApprovalPlanResponse) {
     console.log(data);
     if (!showFreeTrial || !data.auto_recurring!.free_trial?.frequency)
-      data.auto_recurring.free_trial = undefined;
+      data.auto_recurring!.free_trial = undefined;
 
     await updatePlanById?.(data.id!, data);
     window.location.reload();

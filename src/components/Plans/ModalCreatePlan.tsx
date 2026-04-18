@@ -129,7 +129,7 @@ export default function ModalCreatePlan({ onClose }: ModalCreatePlanProps) {
           <span className="text-white">Cancelar</span>
         </Button.Root>
         <Button.Root type="submit" className="w-full flex justify-center">
-          {isSubmitting ? <Loader2 className="animate-spin" /> : <Check />}
+          {isSubmitting ? <Loader2 className="animate-spin" color="#000" /> : <Check color="#000" />}
           <span className="text-black">Criar</span>
         </Button.Root>
       </div>

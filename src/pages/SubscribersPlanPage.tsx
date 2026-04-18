@@ -4,6 +4,7 @@ import { InfoNote } from "../components/InfoNote";
 import { useSubscribers } from "../hooks/useSubscribers";
 import { Table } from "../components/Table";
 import LoadingCircle from "../components/LoadingCircle";
+import { PageLayout } from "../layout/Page";
 
 type Subscriber = {
   id: string;
@@ -30,19 +31,16 @@ export default function SubscribersPlanPage() {
   const { data, isLoading } = useSubscribers(plan_id!);
 
   return (
-    <div className="w-full p-6 min-h-screen flex flex-col gap-10 overflow-x-hidden">
-      {/* Header */}
-      <div className="flex justify-between xl:items-center max-md:flex-col max-md:gap-5">
-        <div className="max-w-2xl space-y-2">
-          <h1 className="titles text-3xl">
-            Assinantes do <span className="text-primary">Plano</span>
-          </h1>
-          <p className="subtitles text-wrap">
-            Visualize e gerencie todos os assinantes ativos deste plano. Monitore o status de cada assinatura em tempo
-            real.
-          </p>
-        </div>
-      </div>
+    <PageLayout.Root>
+      <PageLayout.Header>
+        <PageLayout.Title>
+          Assinantes do <span className="text-primary">Plano</span>
+        </PageLayout.Title>
+        <PageLayout.Subtitle>
+          Visualize e gerencie todos os assinantes ativos deste plano. Monitore o status de cada assinatura em tempo
+          real.
+        </PageLayout.Subtitle>
+      </PageLayout.Header>
 
       {/* Loading */}
       {isLoading && <LoadingCircle />}
@@ -83,6 +81,6 @@ export default function SubscribersPlanPage() {
         Assinantes cancelados ou inadimplentes podem aparecer com status diferente de &quot;Ativo&quot;. Verifique o
         painel do Mercado Pago para mais detalhes.
       </InfoNote>
-    </div>
+    </PageLayout.Root>
   );
 }
