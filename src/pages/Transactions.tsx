@@ -44,9 +44,7 @@ export default function Transactions() {
         <PageLayout.Title>
           TRANSAÇÕES <span className="text-primary">FINANCEIRAS</span>
         </PageLayout.Title>
-        <PageLayout.Subtitle>
-          Visualize e gerencie todas as transações da sua conta em tempo real.
-        </PageLayout.Subtitle>
+        <PageLayout.Subtitle>Visualize e gerencie todas as transações da sua conta em tempo real.</PageLayout.Subtitle>
       </PageLayout.Header>
 
       <div className="glass-card p-6 rounded-3xl border border-white/5 space-y-4">
@@ -71,14 +69,16 @@ export default function Transactions() {
               <Table.Head.Data className="text-right">Data</Table.Head.Data>
             </Table.Head.Root>
             <Table.Body.Root>
-              {transactions.map((transaction: PaymentResponse) => (
-                <Table.Body.TransactionRow key={transaction.id} transaction={transaction} />
-              ))}
+              {isLoading
+                ? Array.from({ length: 10 }).map((_, i) => (
+                    <Table.Body.TransactionRow key={i} transaction={{} as PaymentResponse} isLoading />
+                  ))
+                : transactions.map((transaction: PaymentResponse) => (
+                    <Table.Body.TransactionRow key={transaction.id} transaction={transaction} />
+                  ))}
             </Table.Body.Root>
           </Table.Root>
         )}
-
-        {isLoading && <LoadingCircle />}
 
         {isEmpty && (
           <div className="flex flex-col items-center justify-center py-20 gap-4">

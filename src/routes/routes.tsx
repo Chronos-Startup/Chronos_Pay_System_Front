@@ -1,9 +1,8 @@
 import { AuthUser } from "aws-amplify/auth";
 import { useEffect, lazy, Suspense } from "react";
 import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import LoadingPage from "../pages/LoadingPage";
-import SettingsPage from "../pages/SettingsPage";
-
+const LoadingPage = lazy(() => import("../pages/LoadingPage"));
+const SettingsPage = lazy(() => import("../pages/SettingsPage"));
 const Transactions = lazy(() => import("../pages/Transactions"));
 const ProfilePage = lazy(() => import("../pages/ProfilePage"));
 const PlanPage = lazy(() => import("../pages/PlanPage"));

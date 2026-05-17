@@ -35,6 +35,7 @@ export default function SettingsPage({ userCognito }: UserAmplify) {
         if (!userId) return;
         if (isLoading) return;
         if (mpConnected) return;
+        if (!code) return;
 
         // Tem code → faz o OAuth
         await fetchOAuthMercadoPago(userId, code);
@@ -66,8 +67,8 @@ export default function SettingsPage({ userCognito }: UserAmplify) {
       </PageLayout.Header>
 
       <PageLayout.Card className="p-8 lg:gap-20 max-md:gap-5">
-        <div className="w-40 h-20 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 shadow-2xl">
-          <img src={MercadoPagoLogo} alt="Mercado Pago" />
+        <div className="w-40 h-20  rounded-2xl flex items-center justify-center   shadow-2xl">
+          <img src={MercadoPagoLogo} alt="Logo Mercado Pago" />
         </div>
         <div>
           <PageLayout.Title className="text-xl flex items-center gap-5">
@@ -88,17 +89,16 @@ export default function SettingsPage({ userCognito }: UserAmplify) {
               : "Conecte sua conta para começar a processar pagamentos de forma automatizada e segura."}
           </PageLayout.Subtitle>
         </div>
-        <div>
-          <a
-            className={`flex items-center justify-center gap-3 px-8 py-3 rounded-xl text-sm font-bold transition-all shadow-[0_10px_30px_rgba(0,158,227,0.3)] ${
-              mpConnected ? "bg-[#009ee3] hover:bg-[#008ac5] text-white" : "bg-primary text-midnight-dark"
-            }`}
-            href={`https://auth.mercadopago.com.br/authorization?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${redirectUri}`}
-          >
-            {mpConnected ? "Sincronizar Agora" : "Conectar Conta"}
-            {!mpConnected && <Button.Icon icon={ExternalLink} />}
-          </a>
-        </div>
+
+        <a
+          className={`flex max-md:w-full items-center justify-center gap-3 px-8 py-3 rounded-xl text-sm font-bold transition-all shadow-[0_10px_30px_rgba(0,158,227,0.3)] ${
+            mpConnected ? "bg-[#009ee3] hover:bg-[#008ac5] text-white" : "bg-primary text-midnight-dark"
+          }`}
+          href={`https://auth.mercadopago.com.br/authorization?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${redirectUri}`}
+        >
+          {mpConnected ? "Sincronizar Agora" : "Conectar Conta"}
+          {!mpConnected && <Button.Icon icon={ExternalLink} />}
+        </a>
       </PageLayout.Card>
 
       <PageLayout.Card className="flex-col p-8 items-start">

@@ -1,10 +1,11 @@
 import { AlertCircle, CircleUser, Clock, CreditCard, LogOut, Receipt, Settings } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { ElementType } from "react";
+import { ElementType, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { truncateString } from "../utils/StringUtils";
 import { twMerge } from "tailwind-merge";
+import { Skeleton } from "../components/Skeleton";
 
 interface SidebarItemProps {
   icon: ElementType;
@@ -49,8 +50,10 @@ export default function Sidebar({ isOpen, onClose, logOut }: SidebarProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { mpConnected, isLoading, user } = useAuth();
-
   const activeView = pathname;
+  useEffect(() => {
+    onClose();
+  }, [pathname]);
 
   return (
     <>
@@ -66,7 +69,7 @@ export default function Sidebar({ isOpen, onClose, logOut }: SidebarProps) {
         )}
       </AnimatePresence>
       <aside
-        className={`fixed top-0 left-0 h-screen w-72 border-r border-charcoal bg-midnight-dark flex flex-col gap-5 p-6 z-50 transition-transform duration-300 xl:translate-x-0 ${
+        className={`fixed top-0 left-0 h-dvh w-72 border-r border-charcoal bg-midnight-dark flex flex-col gap-5 p-6 z-50 transition-transform duration-300 xl:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -130,13 +133,13 @@ export default function Sidebar({ isOpen, onClose, logOut }: SidebarProps) {
             label="Configurações"
             active={activeView === "/settings"}
             onClick={() => navigate("/settings")}
-            hasAlert={!mpConnected}
+            hasAlert={!isLoading && !mpConnected}
           />
           <SidebarItem icon={LogOut} onClick={logOut} className="text-red-500/80 hover:bg-red-500/20" label="Sair" />
           {user && (
             <button
               onClick={() => navigate("/profile")}
-              className="mt-4 cursor-pointer p-3 bg-glass rounded-xl flex items-center space-x-3 border border-charcoal hover:bg-charcoal"
+              className="mt-4 cursor-pointer p-3 bg-glass rounded-xl w-full flex items-center space-x-3 border border-charcoal hover:bg-charcoal"
             >
               <div
                 className={`rounded-2xl  hover:border-primary/20 cursor-pointer overflow-hidden shrink-0 bg-primary/30 h-10 w-10 flex items-center justify-center border border-primary/20`}
@@ -148,10 +151,12 @@ export default function Sidebar({ isOpen, onClose, logOut }: SidebarProps) {
                 )}
               </div>
               <div className="w-full">
-                <p className="text-xs font-bold text-on-surface truncate">{truncateString(user?.name, 20)}</p>
+                <p className="text-xs font-bold text-on-surface truncate">{truncateString(user?.name, 23)}</p>
               </div>
             </button>
           )}
+
+          {isLoading && <Skeleton className="min-h-14" />}
         </div>
       </aside>
     </>

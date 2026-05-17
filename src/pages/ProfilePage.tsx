@@ -117,15 +117,16 @@ export default function ProfilePage() {
 
           {/* Dados Corporativos */}
           <PageLayout.Card className="flex-col p-10 gap-10 flex-1">
-            <div className="border-b border-text-gray/20 pb-3 flex gap-3 items-center">
+            <div className="border-b border-text-gray/20 w-full pb-3 flex gap-3 items-center">
               <Building2 className="text-primary" />
               <h2 className="text-white font-bold">Dados Corporativos</h2>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex w-full flex-col gap-4">
               <InputField
-                label="Nome da empresa (Aparece no comprovante)"
+                label="Nome na fatura"
                 type="text"
                 required
+                maxLength={12}
                 error={errors?.company?.name?.message}
                 placeholder="Ex: Chronos Pay Ltda"
                 {...register("company.name", { required: "Nome da empresa é obrigatório" })}

@@ -7,17 +7,48 @@ import StatusBadge from "../statusBadge";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import TransactionModal from "../TransactionModal";
+import { Skeleton } from "../Skeleton";
 
 interface TransactionRowProps {
-  transaction: PaymentResponse;
+  isLoading?: boolean;
+  transaction?: PaymentResponse;
 }
-export default function TransactionRow({ transaction }: TransactionRowProps) {
-  const { date, time } = formatDate(transaction?.date_created);
+export default function TransactionRow({ isLoading, transaction }: TransactionRowProps) {
   const [show, setShow] = useState<boolean>(false);
+  if (isLoading) {
+    return (
+      <Table.Body.Row>
+        <Table.Body.Data>
+          <Skeleton className="h-4 w-32" />
+        </Table.Body.Data>
+        <Table.Body.Data>
+          <Skeleton className="h-10 w-48" />
+        </Table.Body.Data>
+        <Table.Body.Data>
+          <Skeleton className="h-4 w-20" />
+        </Table.Body.Data>
+        <Table.Body.Data>
+          <Skeleton className="h-4 w-16" />
+        </Table.Body.Data>
+        <Table.Body.Data>
+          <Skeleton className="h-6 w-20" />
+        </Table.Body.Data>
+        <Table.Body.Data>
+          <Skeleton className="h-4 w-24 ml-auto" />
+        </Table.Body.Data>
+      </Table.Body.Row>
+    );
+  }
+  if (!transaction) return null;
+
+  const { date, time } = formatDate(transaction?.date_created);
+  
   const payerName =
     `${transaction.payer?.first_name || ""} ${transaction.payer?.last_name || ""}`.trim() ||
     transaction.card?.cardholder?.name;
+  
   const initials = getInitialChar(payerName)?.toUpperCase();
+
 
   return (
     <>

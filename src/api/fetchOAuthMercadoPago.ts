@@ -6,7 +6,7 @@ export async function fetchOAuthMercadoPago(user_id: string, code: string | null
     if (!code) throw new Error("Code não informado");
     if (!user_id) throw new Error("User id não informado");
     const idToken = await getCognitoIdToken();
-
+    
     const response = await axios.post(
       `${import.meta.env.VITE_API_URL}/oauth?code=${code}`,
       {
@@ -18,10 +18,10 @@ export async function fetchOAuthMercadoPago(user_id: string, code: string | null
         },
       },
     );
-
     return response.data;
   } catch (error: any) {
-    throw new Error("Erro do servidor:", error.response.data.message);
+    console.log(error)
+    throw new Error("Erro do servidor:", error.response);
   }
 }
 

@@ -6,7 +6,6 @@ import components from "./cognito/components";
 import "./styles/cognito.css";
 import { BrowserRouter } from "react-router-dom";
 import { formFields } from "./cognito/formFields.js";
-import HeaderDashboard from "./layout/HeaderDashboard";
 import { AuthProvider } from "./context/AuthContext";
 import AppRoutes from "./routes/routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -14,6 +13,9 @@ import { I18n } from "aws-amplify/utils";
 import Sidebar from "./layout/Sidebar";
 import MobileHeader from "./layout/Header";
 import { useState } from "react";
+import { AgentButton } from "./components/Agent/Button";
+import { AgentChat } from "./components/Agent/AgentChat";
+import { AgentProvider } from "./context/AgentContext";
 
 Amplify.configure(outputs);
 I18n.setLanguage("pt-BR");
@@ -55,12 +57,15 @@ export default function App() {
           <AuthProvider userCognito={user}>
             <BrowserRouter>
               <QueryClientProvider client={queryClient}>
-                <main className="w-full flex justify-end">
+                <main className="w-full flex items-end justify-end">
                   <Sidebar isOpen={isSidebarOpen} logOut={signOut} onClose={() => setIsSidebarOpen(false)} />
                   <div className="w-full overflow-x-hidden xl:ml-72">
                     <MobileHeader setIsSidebarOpen={() => setIsSidebarOpen(true)} />
                     <AppRoutes user={user} signOut={signOut} />
                   </div>
+                  <AgentProvider>
+                    <AgentChat />
+                  </AgentProvider>
                 </main>
               </QueryClientProvider>
             </BrowserRouter>
