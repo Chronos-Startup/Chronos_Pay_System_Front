@@ -26,7 +26,7 @@ export default function SettingsPage({ userCognito }: UserAmplify) {
   const { isLoading, mpConnected, user } = useAuth();
   const oAuthData = useMemo(() => user?.mp ?? null, [user?.mp]);
 
-  const redirectUri = useMemo(() => `${window.location.origin}/oauth/mercadopago`, []);
+  const redirectUri = useMemo(() => `${window.location.origin}/settings`, []);
 
   useEffect(() => {
     const checkConnection = async () => {
