@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { AgentButton } from "./Button";
 import { AnimatePresence, motion } from "motion/react";
 import { AgentInput } from "./Input";
@@ -12,7 +11,7 @@ export interface Message {
 }
 
 export function AgentChat() {
-    const {isOpen, isMinimized} = useAgent()
+  const { isOpen, isMinimized } = useAgent();
 
   return (
     <div className="fixed bottom-6 right-6 z-100">
@@ -27,13 +26,13 @@ export function AgentChat() {
               height: isMinimized ? "64px" : "540px",
             }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className={`w-95 bg-midnight-dark border border-white/10 rounded-3xl shadow-chronos relative flex flex-col overflow-hidden backdrop-blur-xl transition-all duration-300`}
+            className={`w-95 max-w-[90vw] bg-midnight-dark border border-white/10 rounded-3xl shadow-chronos relative flex flex-col overflow-hidden backdrop-blur-xl transition-all duration-300`}
           >
-            <AgentHeader  />
+            <AgentHeader />
 
             {!isMinimized && (
               <>
-                <AgentMessages  />
+                <AgentMessages />
                 <AgentInput />
               </>
             )}

@@ -20,14 +20,23 @@ export default async function sendMessageAgent(
         responseType: "text",
         onDownloadProgress: (progressEvent) => {
           const target = progressEvent.event.currentTarget as XMLHttpRequest;
-          const currentResponse = target.response;
+          
+          const currentResponse = JSON.parse(target.response);
+          let displayText = currentResponse;
+          
+          if (Array.isArray(currentResponse)) {
+            displayText = currentResponse
+              .filter((block: any) => block.text)
+              .map((block: any) => block.text)
+              .join("");
+          }
           setMessages((prev) => {
             const updated = [...prev];
             // Localiza o último item (que criamos vazio ali em cima) e injeta o acumulado
             if (updated.length > 0) {
               updated[updated.length - 1] = {
                 role: "model",
-                text: currentResponse,
+                text: displayText,
               };
             }
             return updated;
