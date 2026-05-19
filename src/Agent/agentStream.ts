@@ -20,24 +20,15 @@ export default async function sendMessageAgent(
         responseType: "text",
         onDownloadProgress: (progressEvent) => {
           const target = progressEvent.event.currentTarget as XMLHttpRequest;
-          
-          const currentResponse = JSON.parse(target.response);
-          let displayText = currentResponse;
-          
-          if (Array.isArray(currentResponse)) {
-            displayText = currentResponse
-              .filter((block: any) => block.text)
-              .map((block: any) => block.text)
-              .join("");
-          }
+          const currentResponse = target.response as string;
+
           setMessages((prev) => {
             const updated = [...prev];
-            // Localiza o último item (que criamos vazio ali em cima) e injeta o acumulado
             if (updated.length > 0) {
-              updated[updated.length - 1] = {
+              updated.push({
                 role: "model",
-                text: displayText,
-              };
+                text: currentResponse,
+              })
             }
             return updated;
           });
@@ -50,10 +41,10 @@ export default async function sendMessageAgent(
     setMessages((prev) => {
       const updated = [...prev];
       if (updated.length > 0) {
-        updated[updated.length - 1] = {
+        updated.push({
           role: "model",
-          text: "[Instabilidade na rede. Não foi possível receber a resposta do agente.]",
-        };
+          text: "Instabilidade na rede. Não foi possível receber a resposta do agente.",
+        })
       }
       return updated;
     });

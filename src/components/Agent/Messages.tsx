@@ -2,9 +2,10 @@ import { Sparkles, User } from "lucide-react";
 import { motion } from "motion/react";
 import { useAgent } from "../../context/AgentContext";
 import { useEffect, useRef } from "react";
+import ReactMarkdown from "react-markdown"
 
 export function AgentMessages() {
-  
+
   const { isMinimized, messages, isLoading } = useAgent();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -30,9 +31,8 @@ export function AgentMessages() {
             >
               <div className={`flex gap-3 max-w-[85%] min-w-0 ${m.role === "user" ? "flex-row-reverse" : ""}`}>
                 <div
-                  className={`w-7 h-7 rounded-lg shrink-0 flex items-center justify-center ${
-                    m.role === "user" ? "bg-white/10" : "bg-primary/20"
-                  }`}
+                  className={`w-7 h-7 rounded-lg shrink-0 flex items-center justify-center ${m.role === "user" ? "bg-white/10" : "bg-primary/20"
+                    }`}
                 >
                   {m.role === "user" ? (
                     <User size={14} className="text-white" />
@@ -41,13 +41,16 @@ export function AgentMessages() {
                   )}
                 </div>
                 <div
-                  className={`p-3 rounded-2xl w-full text-sm ${
-                    m.role === "user"
+                  className={`p-3 rounded-2xl w-full text-sm ${m.role === "user"
                       ? "bg-primary text-midnight-dark font-medium rounded-tr-none"
                       : "bg-white/5 text-text-gray border border-white/5 rounded-tl-none leading-relaxed"
-                  }`}
+                    }`}
                 >
-                  <div className="markdown-body text-xs wrap-break-word overflow-hidden min-w-0 w-full">{m.text}</div>
+                  <div className="markdown-body text-xs wrap-break-word overflow-hidden min-w-0 w-full">
+                    <ReactMarkdown>
+                      {m.text}
+                    </ReactMarkdown>
+                  </div>
                 </div>
               </div>
             </motion.div>

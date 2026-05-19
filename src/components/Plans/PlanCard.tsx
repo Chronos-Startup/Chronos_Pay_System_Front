@@ -93,7 +93,7 @@ export function PlanCard({ plan }: PlanCardInterfaceComposition) {
             <TrendingUp size={12} className="text-text-gray" />
           </div>
           <span className="text-lg font-mono font-semibold text-emerald-400">
-            R$ R$ {((plan?.auto_recurring?.transaction_amount || 0) * (plan?.subscribers_count || 0)).toFixed(2)}
+            R$ {((plan?.auto_recurring?.transaction_amount || 0) * (plan?.subscribers_count || 0)).toFixed(2)}
           </span>
         </div>
       </div>

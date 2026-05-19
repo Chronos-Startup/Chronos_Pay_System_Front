@@ -8,8 +8,6 @@ export interface Company {
 
 export interface MercadoPagoIntegration {
   isConnected: boolean;
-  access_token: string;
-  refresh_token?: string;
   merchant_id?: string;
   public_key?: string;
 }

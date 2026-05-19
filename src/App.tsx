@@ -13,7 +13,6 @@ import { I18n } from "aws-amplify/utils";
 import Sidebar from "./layout/Sidebar";
 import MobileHeader from "./layout/Header";
 import { useState } from "react";
-import { AgentButton } from "./components/Agent/Button";
 import { AgentChat } from "./components/Agent/AgentChat";
 import { AgentProvider } from "./context/AgentContext";
 

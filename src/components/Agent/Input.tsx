@@ -17,7 +17,7 @@ export function AgentInput() {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && handleOnSendInput(input)}
+          onKeyDown={(e) => e.key === "Enter" && handleOnSendInput(input)}
           placeholder="Como posso te ajudar hoje?..."
           className="w-full bg-midnight-light/50 border border-white/10 rounded-2xl py-3.5 pl-4 pr-12 text-xs text-white focus:outline-none focus:border-primary/50 transition-all placeholder:text-text-gray/30"
         />

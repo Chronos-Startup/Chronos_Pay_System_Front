@@ -20,15 +20,22 @@ interface AgentProviderProps {
 export function AgentProvider({ children }: AgentProviderProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  const [isMinimized, setIsMinimized] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([
     { role: "model", text: "Olá! Sou o assistente inteligente do Chronos Pay. Como posso ajudar você hoje?" },
   ]);
-  const [isMinimized, setIsMinimized] = useState(false);
+
+  //enviar uma nova mensagem para o agente
   const onSend = async (message: string) => {
+    try {
+      setIsLoading(true);
       setMessages((prev) => [...prev, { role: "user", text: message }]);
-      setMessages((prev) => [...prev, { role: "model", text: "" }]);
-      await sendMessageAgent(message, setMessages)
+      await sendMessageAgent(message, setMessages);
+    } catch (error) {
+      console.error("Erro do agente:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
