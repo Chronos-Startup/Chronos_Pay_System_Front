@@ -136,7 +136,9 @@ export default function Sidebar({ isOpen, onClose, logOut }: SidebarProps) {
             hasAlert={!isLoading && !mpConnected}
           />
           <SidebarItem icon={LogOut} onClick={logOut} className="text-red-500/80 hover:bg-red-500/20" label="Sair" />
-          {user && (
+          {isLoading ? (
+            <Skeleton className="min-h-14" />
+          ) : (
             <button
               onClick={() => navigate("/profile")}
               className="mt-4 cursor-pointer p-3 bg-glass rounded-xl w-full flex items-center space-x-3 border border-charcoal hover:bg-charcoal"
@@ -155,8 +157,6 @@ export default function Sidebar({ isOpen, onClose, logOut }: SidebarProps) {
               </div>
             </button>
           )}
-
-          {isLoading && <Skeleton className="min-h-14" />}
         </div>
       </aside>
     </>

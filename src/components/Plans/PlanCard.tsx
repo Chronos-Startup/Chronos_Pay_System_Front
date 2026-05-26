@@ -82,9 +82,9 @@ export function PlanCard({ plan }: PlanCardInterfaceComposition) {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-lg font-mono font-semibold text-white">{plan.subscribers_count || 0}</span>
-            <button className="p-1 text-text-gray group-hover:text-primary transition-colors">
+            <div className="p-1 text-text-gray group-hover:text-primary transition-colors">
               <Eye size={12} />
-            </button>
+            </div>
           </div>
         </button>
         <div className="bg-midnight-light/50 rounded-xl p-3 border border-white/5">
@@ -221,6 +221,7 @@ export function PlanCard({ plan }: PlanCardInterfaceComposition) {
 
               <div className="flex gap-5">
                 <Button.Root
+                  type="button"
                   onClick={() => setShowEditModal(false)}
                   className="flex justify-center py-4 bg-charcoal w-full hover:bg-zinc-700 rounded-2xl font-semibold transition-all"
                 >

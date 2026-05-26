@@ -103,14 +103,14 @@ export default function ProfilePage() {
               </div>
             </div>
             <div className="flex w-full flex-col gap-4">
-              <InputField label="Nome completo" placeholder="Seu nome" readOnly disabled value={user?.name} />
+              <InputField label="Nome completo" placeholder="Seu nome" readOnly disabled value={user?.name ?? ""} />
               <InputField
                 label="E-mail profissional"
                 type="email"
                 readOnly
                 disabled
                 placeholder="seu@email.com"
-                value={user?.email}
+                value={user?.email ?? ""}
               />
             </div>
           </PageLayout.Card>

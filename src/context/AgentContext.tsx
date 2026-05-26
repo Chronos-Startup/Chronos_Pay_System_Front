@@ -1,6 +1,7 @@
-import { createContext, useContext, ReactNode, useState } from "react";
+import { createContext, useContext, ReactNode, useState, useEffect } from "react";
 import { Message } from "../components/Agent/AgentChat";
 import sendMessageAgent from "../Agent/agentStream";
+import { useAuth } from "./AuthContext";
 
 interface AgentContextData {
   isLoading: boolean;
@@ -21,9 +22,21 @@ export function AgentProvider({ children }: AgentProviderProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isMinimized, setIsMinimized] = useState<boolean>(false);
-  const [messages, setMessages] = useState<Message[]>([
-    { role: "model", text: "Olá! Sou o assistente inteligente do Chronos Pay. Como posso ajudar você hoje?" },
-  ]);
+  const { user, isLoading: authIsLoading } = useAuth();
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  useEffect(() => {
+    if (!authIsLoading && user) {
+      const firstName = user.name.split(" ")[0];
+      setMessages([
+        {
+          id: "initial",
+          role: "model",
+          text: `Olá, ${firstName}! Sou o assistente inteligente do Chronos Payments. Como posso te ajudar hoje?`,
+        },
+      ]);
+    }
+  }, [authIsLoading, user]);
 
   //enviar uma nova mensagem para o agente
   const onSend = async (message: string) => {

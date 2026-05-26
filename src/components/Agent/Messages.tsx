@@ -25,9 +25,9 @@ export function AgentMessages() {
       transition={{ delay: 0.7 }}
       className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-hidden"
     >
-      {messages.map((m) => (
+      {messages.map((m, i) => (
         <motion.div
-          key={m.id}
+          key={m.id || i}
           initial={{ opacity: 0, x: m.role === "user" ? 10 : -10 }}
           animate={{ opacity: 1, x: 0 }}
           className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}

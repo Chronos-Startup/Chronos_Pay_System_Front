@@ -19,7 +19,9 @@ export interface UserPreferences {
 }
 
 export interface AuthUserDynamo {
-  id: string;
+  name: string;
+  email: string;
+  user_id: string;
   mp: MercadoPagoIntegration;
   company: Company;
   merchant_id?: string;
