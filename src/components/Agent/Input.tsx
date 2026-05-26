@@ -6,6 +6,7 @@ export function AgentInput() {
   const [input, setInput] = useState<string>("");
   const { onSend, isLoading } = useAgent();
   const handleOnSendInput = (input: string) => {
+    if (!input.trim()) return;
     onSend(input);
     setInput(""); //clean input
   };
@@ -13,13 +14,17 @@ export function AgentInput() {
   return (
     <div className="p-4 border-t bottom-0 w-full border-white/5">
       <div className="relative group">
-        <input
-          type="text"
+        <textarea
           value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleOnSendInput(input)}
+          rows={1}
+          onChange={(e) => {
+            setInput(e.target.value);
+            e.target.style.height = "auto";
+            e.target.style.height = `${e.target.scrollHeight}px`;
+          }}
+          onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleOnSendInput(input)}
           placeholder="Como posso te ajudar hoje?..."
-          className="w-full bg-midnight-light/50 border border-white/10 rounded-2xl py-3.5 pl-4 pr-12 text-xs text-white focus:outline-none focus:border-primary/50 transition-all placeholder:text-text-gray/30"
+          className="w-full resize-none overflow-y-hidden bg-midnight-light/50 border border-white/10 rounded-2xl py-3.5 pl-4 pr-12 text-xs text-white focus:outline-none focus:border-primary/50 transition-all placeholder:text-text-gray/30"
         />
         <button
           onClick={() => handleOnSendInput(input)}
