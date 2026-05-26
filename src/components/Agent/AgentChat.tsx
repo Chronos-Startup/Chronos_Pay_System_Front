@@ -6,6 +6,7 @@ import { AgentMessages } from "./Messages";
 import { useAgent } from "../../context/AgentContext";
 
 export interface Message {
+  id?: string;
   role: "user" | "model";
   text: string;
 }
@@ -26,7 +27,7 @@ export function AgentChat() {
               height: isMinimized ? "64px" : "540px",
             }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className={`w-95 max-w-[90vw] bg-midnight-dark border border-white/10 rounded-3xl shadow-chronos relative flex flex-col overflow-hidden backdrop-blur-xl transition-all duration-300`}
+            className={`w-95 max-h-[540px] max-w-[90vw] bg-midnight-dark border border-white/10 rounded-3xl shadow-chronos relative flex flex-col overflow-hidden backdrop-blur-xl transition-all duration-300`}
           >
             <AgentHeader />
 

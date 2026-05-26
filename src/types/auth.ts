@@ -1,5 +1,5 @@
 export interface Company {
-  id: string;
+  id?: string;
   name: string;
   website?: string;
   industry?: string; // setor de atuação
@@ -8,7 +8,8 @@ export interface Company {
 
 export interface MercadoPagoIntegration {
   isConnected: boolean;
-  merchant_id?: string;
+  access_token: string;
+  refresh_token?: string;
   public_key?: string;
 }
 
@@ -18,14 +19,10 @@ export interface UserPreferences {
 }
 
 export interface AuthUserDynamo {
-  user_id: string;
-  name: string;
-  email: string;
-
-  company: Company;
-
+  id: string;
   mp: MercadoPagoIntegration;
-
+  company: Company;
+  merchant_id?: string;
   preferences?: UserPreferences;
 }
 

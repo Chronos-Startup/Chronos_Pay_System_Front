@@ -74,10 +74,11 @@ export default function SettingsPage({ userCognito }: UserAmplify) {
           <PageLayout.Title className="text-xl flex items-center gap-5">
             MERCADO PAGO{" "}
             <span
-              className={`px-2 py-0.5 text-[9px] font-black rounded border uppercase tracking-widest ${mpConnected
+              className={`px-2 py-0.5 text-[9px] font-black rounded border uppercase tracking-widest ${
+                mpConnected
                   ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
                   : "bg-red-500/10 text-red-500 border-red-500/20"
-                }`}
+              }`}
             >
               {mpConnected ? "Ativo" : "Inativo"}
             </span>
@@ -90,8 +91,9 @@ export default function SettingsPage({ userCognito }: UserAmplify) {
         </div>
 
         <a
-          className={`flex max-md:w-full items-center justify-center gap-3 px-8 py-3 rounded-xl text-sm font-bold transition-all shadow-[0_10px_30px_rgba(0,158,227,0.3)] ${mpConnected ? "bg-[#009ee3] hover:bg-[#008ac5] text-white" : "bg-primary text-midnight-dark"
-            }`}
+          className={`flex max-md:w-full items-center justify-center gap-3 px-8 py-3 rounded-xl text-sm font-bold transition-all shadow-[0_10px_30px_rgba(0,158,227,0.3)] ${
+            mpConnected ? "bg-[#009ee3] hover:bg-[#008ac5] text-white" : "bg-primary text-midnight-dark"
+          }`}
           href={`https://auth.mercadopago.com.br/authorization?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${redirectUri}`}
         >
           {mpConnected ? "Sincronizar Agora" : "Conectar Conta"}
@@ -128,8 +130,8 @@ export default function SettingsPage({ userCognito }: UserAmplify) {
           <TextUppercase>MERCHANT ID</TextUppercase>
           <div className="inputs flex gap-3 hover:bg-primary/20 transition-all duration-200">
             <KeyRound />
-            <input className="w-full focus:outline-none" readOnly value={oAuthData?.merchant_id} />
-            <CopyButton value={oAuthData?.merchant_id} />
+            <input className="w-full focus:outline-none" readOnly value={user?.merchant_id} />
+            <CopyButton value={user?.merchant_id} />
           </div>
         </div>
       </PageLayout.Card>
