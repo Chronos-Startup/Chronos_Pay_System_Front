@@ -25,6 +25,7 @@ export function AuthProvider({ children, userCognito }: { children: ReactNode; u
         }
         setUser({
           ...response,
+          user_id: userCognito?.userId,
           name: attributes.name,
           email: attributes.email,
           company: {
