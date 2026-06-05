@@ -1,7 +1,7 @@
 import { CreditCard, FileText, Receipt, User, X } from "lucide-react";
 import PaymentMethodBadge from "./PaymentMethodBadge";
 import TransactionModalField from "./TransactionModalField";
-import { formatDocument } from "../utils/StringUtils";
+import { formatCurrency, formatDocument } from "../utils/StringUtils";
 import { motion } from "motion/react";
 import { PaymentResponse } from "mercadopago/dist/clients/payment/commonTypes";
 import TextUppercase from "./TextUppercase";
@@ -42,7 +42,7 @@ export default function TransactionModal({ transaction, setShow }: TransactionMo
         <main>
           <div className="w-full border-b py-6 border-text-gray flex flex-col gap-2 items-center justify-center">
             <TextUppercase className="text-md">VALOR DA TRANSAÇÃO</TextUppercase>
-            <span className="text-4xl font-extrabold">R$ {transaction.transaction_amount?.toFixed(2)}</span>
+            <span className="text-4xl font-extrabold">{formatCurrency(transaction.transaction_amount ?? 0)}</span>
             <p className="text-text-gray text-md">{transaction.description}</p>
             <p className={`${stylesStatus[status]} px-3 py-1 rounded-full text-wrap border text-md`}>
               {errorMap[status_detail] || transaction.status_detail}
@@ -81,7 +81,7 @@ export default function TransactionModal({ transaction, setShow }: TransactionMo
               {transaction.installments && (
                 <TransactionModalField
                   label="Parcelas"
-                  value={`${transaction.installments}x R$${transaction.transaction_details?.installment_amount ?? transaction.transaction_amount}`}
+                  value={`${transaction.installments}x ${formatCurrency(transaction.transaction_details?.installment_amount ?? transaction.transaction_amount ?? 0)}`}
                 />
               )}
               {transaction.statement_descriptor && (
@@ -106,7 +106,7 @@ export default function TransactionModal({ transaction, setShow }: TransactionMo
                   <TransactionModalField
                     key={index}
                     label={fee.type === "mercadopago_fee" ? "Taxa do Mercado Pago" : "Taxa da Chronos Pay"}
-                    value={`R$ ${fee.amount}`}
+                    value={formatCurrency(fee.amount ?? 0)}
                   />
                 ))
               ) : (

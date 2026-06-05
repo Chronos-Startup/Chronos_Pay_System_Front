@@ -20,7 +20,7 @@ export async function fetchOAuthMercadoPago(user_id: string, code: string | null
     );
     return response.data;
   } catch (error: any) {
-    console.log(error)
+    console.error(error)
     throw new Error("Erro do servidor:", error.response);
   }
 }

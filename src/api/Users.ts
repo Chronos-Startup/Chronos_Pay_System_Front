@@ -12,7 +12,7 @@ export async function getUser() {
     });
     return response.data;
   } catch (error: any) {
-    console.log("Erro ao carregar usuário:", error.response.data.message);
+    console.error("Erro ao carregar usuário:", error.response.data.message);
     toast.error(error.response.data.message);
     throw error;
   }
@@ -34,7 +34,7 @@ export async function updateUserProfile(data: any) {
     );
     return response.data;
   } catch (error: any) {
-    console.log("Erro ao realizar update de usuário:", error.response.data.message);
+    console.error("Erro ao realizar update de usuário:", error.response.data.message);
     toast.error(error.response.data.message);
     throw error;
   }

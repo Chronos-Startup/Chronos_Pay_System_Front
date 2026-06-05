@@ -3,11 +3,10 @@ import { Button } from "../components/Button";
 import { Table } from "../components/Table";
 import { useTransactions } from "../hooks/useTransactions";
 import { useCallback, useState } from "react";
-import { TransactionFilters } from "../types/transactionFilters";
+import { TransactionFilters } from "../types/TransactionFilters";
 import SearchTransactions from "../components/TransactionsPage/SearchTransactions";
 import Filters from "../components/TransactionsPage/Filters";
 import { PaymentResponse } from "mercadopago/dist/clients/payment/commonTypes";
-import LoadingCircle from "../components/LoadingCircle";
 import { PageLayout } from "../layout/Page";
 export default function Transactions() {
   const [page, setPage] = useState(1);
@@ -81,7 +80,7 @@ export default function Transactions() {
         )}
 
         {isEmpty && (
-          <div className="flex flex-col items-center justify-center py-20 gap-4">
+          <div className="flex flex-col items-center justify-center py-46 gap-4">
             <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
               <ArrowUpDown className="text-text-gray w-7 h-7" />
             </div>

@@ -18,14 +18,24 @@ export interface UserPreferences {
   theme: "light" | "dark";
 }
 
-export interface AuthUserDynamo {
+interface UsageMetrics {
+  inputTokens?: number;
+  outputTokens?: number;
+  totalTokens?: number;
+  costBrl?: number;
+}
+interface AttributesCognito {
   name: string;
   email: string;
+  company: Company;
+}
+
+export interface AuthUserDynamo extends UsageMetrics, AttributesCognito {
   user_id: string;
   mp: MercadoPagoIntegration;
-  company: Company;
   merchant_id?: string;
   preferences?: UserPreferences;
+  plan: UserPlan;
 }
 
 export interface AuthContextData {
@@ -34,3 +44,4 @@ export interface AuthContextData {
   mpConnected: boolean;
   updateUser?: (data: Partial<AuthUserDynamo>) => void;
 }
+export type UserPlan = "free" | "premium";

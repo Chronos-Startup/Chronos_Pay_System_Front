@@ -41,7 +41,7 @@ export default function SettingsPage({ userCognito }: UserAmplify) {
         await fetchOAuthMercadoPago(userId, code);
         window.location.reload();
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setError(true);
       }
     };

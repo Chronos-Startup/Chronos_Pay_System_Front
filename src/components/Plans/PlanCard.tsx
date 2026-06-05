@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../utils/DateUtils";
-import { formatFrequency, formatFrequencyFreeTrial } from "../../utils/StringUtils";
+import { formatCurrency, formatFrequency, formatFrequencyFreeTrial } from "../../utils/StringUtils";
 import CopyButton from "../copyButton";
 import StatusBadge from "../statusBadge";
 import { PreApprovalPlanResponse } from "mercadopago/dist/clients/preApprovalPlan/commonTypes";
@@ -18,7 +18,7 @@ import { TIME_UNITS_LABELS } from "../../constants/constants";
 import { SwitchCheckBox } from "../SwitchCheckBox";
 
 interface PlanCardInterfaceComposition {
-  plan: PreApprovalPlanResponse;
+  plan: PreApprovalPlanResponse & { subscribers_count?: number };
 }
 
 export function PlanCard({ plan }: PlanCardInterfaceComposition) {
@@ -37,7 +37,7 @@ export function PlanCard({ plan }: PlanCardInterfaceComposition) {
     plan?.auto_recurring?.free_trial?.frequency,
     plan?.auto_recurring?.free_trial?.frequency_type,
   );
-  const URL_TO_PREAPPROVAL = `https://checkout.chronospay.ufersa.dev.br/plans/${user?.mp.public_key}/${plan.id}/${user?.user_id}`;
+  const URL_TO_PREAPPROVAL = `https://checkouts.chronospayment.ufersa.dev.br/plans/${user?.mp.public_key}/${plan.id}/${user?.user_id}`;
 
   return (
     <div className="bg-midnight-light/50 shadow-chronos hover:ring-primary/50 ring ring-transparent  hover:-translate-y-3 transition-all duration-300 p-5 gap-4 rounded-2xl flex flex-col justify-between">
@@ -59,7 +59,7 @@ export function PlanCard({ plan }: PlanCardInterfaceComposition) {
 
       <div className="flex items-baseline gap-1">
         <span className="text-3xl font-extrabold text-primary">
-          R$ {plan?.auto_recurring?.transaction_amount?.toFixed(2)}
+          {formatCurrency(plan?.auto_recurring?.transaction_amount ?? 0)}
         </span>
         <span className="text-sm text-white/80 italic">
           /{formatFrequency(plan?.auto_recurring?.frequency_type, plan?.auto_recurring?.frequency)}
@@ -93,7 +93,7 @@ export function PlanCard({ plan }: PlanCardInterfaceComposition) {
             <TrendingUp size={12} className="text-text-gray" />
           </div>
           <span className="text-lg font-mono font-semibold text-emerald-400">
-            R$ {((plan?.auto_recurring?.transaction_amount || 0) * (plan?.subscribers_count || 0)).toFixed(2)}
+            {formatCurrency((plan?.auto_recurring?.transaction_amount || 0) * (plan?.subscribers_count || 0))}
           </span>
         </div>
       </div>

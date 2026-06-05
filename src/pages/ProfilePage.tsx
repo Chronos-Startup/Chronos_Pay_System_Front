@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { useImageUpload } from "../utils/HandleImageChange";
 import ButtonIcon from "../components/Button/ButtonIcon";
 import { useForm } from "react-hook-form";
-import { AuthUserDynamo } from "../types/auth";
+import { AuthUserDynamo } from "../types/UserType";
 import InputField from "../components/InputField";
 import TextUppercase from "../components/TextUppercase";
 import { PageLayout } from "../layout/Page";

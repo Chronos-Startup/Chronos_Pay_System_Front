@@ -1,4 +1,4 @@
-import { AlertCircle, CircleUser, Clock, CreditCard, LogOut, Receipt, Settings } from "lucide-react";
+import { AlertCircle, CircleUser, Clock, Cpu, CreditCard, LogOut, Receipt, Settings, User } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { ElementType, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -73,12 +73,12 @@ export default function Sidebar({ isOpen, onClose, logOut }: SidebarProps) {
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex items-center gap-5">
-          <div className="p-2 flex gap-2 items-center font-bold uppercase text-xs bg-primary/20 border text-primary border-primary/50 rounded">
+        <div className="flex items-center gap-5 min-w-0">
+          <div className="p-2 flex gap-2 items-center font-bold uppercase text-xs bg-primary/20 border text-primary border-primary/50 rounded shrink-0">
             <Clock />
           </div>
-          <p className="uppercase text-xl max-md:text-md text-slate-100 font-extrabold">
-            CHRONOS<span className="text-primary">PAY</span>
+          <p className="uppercase text-md text-slate-100 font-extrabold tracking-tight">
+            CHRONOS<span className="text-primary font-light">PAYMENTS</span>
           </p>
         </div>
 
@@ -100,6 +100,18 @@ export default function Sidebar({ isOpen, onClose, logOut }: SidebarProps) {
             label="Planos e Assinaturas"
             active={activeView === "/plans"}
             onClick={() => navigate("/plans")}
+          />
+          <SidebarItem
+            icon={User}
+            label="Minha Conta"
+            active={activeView === "/profile"}
+            onClick={() => navigate("/profile")}
+          />
+          <SidebarItem
+            icon={Cpu}
+            label="Uso de IA & Tokens"
+            active={activeView === "/ai-usage"}
+            onClick={() => navigate("/ai-usage")}
           />
         </nav>
 

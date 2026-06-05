@@ -10,10 +10,9 @@ export async function createPlan(data: any) {
         Authorization: `Bearer ${idToken}`,
       },
     });
-    console.log(response);
     return response.data;
   } catch (error: any) {
-    console.log("Erro ao realizar update de usuário:", error.response.data.message || error.response.data.error);
+    console.error("Erro ao realizar update de usuário:", error.response.data.message || error.response.data.error);
     toast.error(error.response.data.message || error.response.data.error);
     throw error;
   }

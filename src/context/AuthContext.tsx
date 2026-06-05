@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { AuthContextData, AuthUserDynamo } from "../types/auth";
+import { AuthContextData, AuthUserDynamo } from "../types/UserType";
 import { getUser } from "../api/Users";
 import { AuthUser, fetchUserAttributes, updateUserAttributes } from "aws-amplify/auth";
 import { toast } from "sonner";
@@ -37,7 +37,7 @@ export function AuthProvider({ children, userCognito }: { children: ReactNode; u
 
         setMpConnected(response.mp.isConnected);
       } catch (error) {
-        console.log("Erro ao carregar usuário:", error);
+        console.error("Erro ao carregar usuário:", error);
       } finally {
         setIsLoading(false);
       }

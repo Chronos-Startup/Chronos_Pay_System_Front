@@ -34,6 +34,10 @@ export function getInitialChar(value?: string) {
   );
 }
 
+export function formatCurrency(value: number): string {
+  return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(value);
+}
+
 export function formatFrequencyFreeTrial(frequency?: number, frequencyType?: string) {
   if (!frequency || !frequencyType) return null;
   if (frequency <= 0) return "Inválido";

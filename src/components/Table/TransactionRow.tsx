@@ -1,7 +1,7 @@
 import { PaymentResponse } from "mercadopago/dist/clients/payment/commonTypes";
 import { Table } from ".";
 import { formatDate } from "../../utils/DateUtils";
-import { getColorFromName, getInitialChar, truncateString } from "../../utils/StringUtils";
+import { formatCurrency, getColorFromName, getInitialChar, truncateString } from "../../utils/StringUtils";
 import PaymentMethodBadge from "../PaymentMethodBadge";
 import StatusBadge from "../statusBadge";
 import { useState } from "react";
@@ -81,7 +81,7 @@ export default function TransactionRow({ isLoading, transaction }: TransactionRo
         </Table.Body.Data>
         <Table.Body.Data>
           <span className={transaction.status !== "approved" ? "text-gray-500" : "text-white"}>
-            R$ {transaction.transaction_amount?.toFixed(2)}
+            {formatCurrency(transaction.transaction_amount ?? 0)}
           </span>
         </Table.Body.Data>
         <Table.Body.Data>

@@ -11,7 +11,7 @@ export default function MobileHeader({ setIsSidebarOpen }: MobileHeader) {
           <Clock size={18} className="text-midnight-dark font-bold" />
         </div>
         <span className="font-display font-bold text-white text-sm tracking-tight uppercase">
-          CHRONOS<span className="text-primary font-light">PAY</span>
+          CHRONOS<span className="text-primary font-light">PAYMENTS</span>
         </span>
       </div>
       <button onClick={setIsSidebarOpen} className="p-2 bg-midnight-light rounded-lg text-text-gray hover:text-white">

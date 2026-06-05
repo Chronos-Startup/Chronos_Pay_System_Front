@@ -1,5 +1,5 @@
 import { labels, payment_methods_id } from "../../constants/constants";
-import { TransactionFilters } from "../../types/transactionFilters";
+import { TransactionFilters } from "../../types/TransactionFilters";
 
 import { Dispatch, memo, SetStateAction } from "react";
 

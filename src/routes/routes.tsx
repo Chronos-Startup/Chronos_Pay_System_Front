@@ -7,6 +7,7 @@ const Transactions = lazy(() => import("../pages/Transactions"));
 const ProfilePage = lazy(() => import("../pages/ProfilePage"));
 const PlanPage = lazy(() => import("../pages/PlanPage"));
 const SubscribersPlanPage = lazy(() => import("../pages/SubscribersPlanPage"));
+const AiUsage = lazy(() => import("../pages/AiUsage"));
 
 export default function AppRoutes({ user, signOut }: { user?: AuthUser; signOut?: () => void }) {
   const navigate = useNavigate();
@@ -26,9 +27,10 @@ export default function AppRoutes({ user, signOut }: { user?: AuthUser; signOut?
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/plans" element={<PlanPage />} />
         <Route path="/plans/:plan_id/subscribers" element={<SubscribersPlanPage />} />
-        <Route path="/reports" element={<div>Relatórios (em breve)</div>} />
+        <Route path="/ai-usage" element={<AiUsage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/settings" element={<SettingsPage userCognito={user} />} />
+        <Route path="/reports" element={<div>Relatórios (em breve)</div>} />
         <Route path="*" element={<Navigate to="/transactions" replace />} />
       </Routes>
     </Suspense>
