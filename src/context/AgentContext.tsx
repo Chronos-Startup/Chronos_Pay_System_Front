@@ -2,7 +2,6 @@ import { createContext, useContext, ReactNode, useState, useEffect } from "react
 import { Message } from "../components/Agent/AgentChat";
 import sendMessageAgent from "../Agent/agentStream";
 import { useAuth } from "./AuthContext";
-import { toast } from "sonner";
 
 interface AgentContextData {
   isLoading: boolean;
@@ -26,14 +25,6 @@ export function AgentProvider({ children }: AgentProviderProps) {
   const { user, isLoading: authIsLoading } = useAuth();
   const [messages, setMessages] = useState<Message[]>([]);
 
-  useEffect(() => {
-    if (!user) return;
-    let ws: WebSocket;
-    const connect = () => {
-      ws = new WebSocket("wss://o3hab5y196.execute-api.us-east-1.amazonaws.com/production/");
-    }
-    connect()
-  }, [user]);
 
   useEffect(() => {
     if (!authIsLoading && user) {

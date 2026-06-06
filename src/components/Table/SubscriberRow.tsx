@@ -8,6 +8,7 @@ import { AnimatePresence } from "motion/react";
 type Subscriber = {
   id: string;
   name: string;
+  cardholderName: string
   payer_email: string;
   identificationType: string;
   identificationNumber: string;
@@ -16,6 +17,7 @@ type Subscriber = {
   next_payment_date: string;
   payment_method_id: string;
   reason: string;
+  nextRetryDate: string
   preapproval_plan_id: string;
   external_reference?: string;
   auto_recurring: {
@@ -31,11 +33,11 @@ interface SubscriberRowProps {
 }
 
 export default function SubscriberRow({ subscriber }: SubscriberRowProps) {
-  const { date, time } = formatDate(subscriber?.date_created);
+  const { date, time } = formatDate(subscriber?.nextRetryDate);
   const { date: nextPaymentDate, time: nextPaymentTime } = formatDate(subscriber?.next_payment_date);
   const [show, setShow] = useState<boolean>(false);
 
-  const nameParts = subscriber.name?.split(" ") ?? [];
+  const nameParts = subscriber.cardholderName?.split(" ") ?? [];
   const initials = `${getInitialChar(nameParts[0])}${getInitialChar(nameParts[1])}`.toUpperCase() || "?";
 
   const amount = new Intl.NumberFormat("pt-BR", {
@@ -65,7 +67,7 @@ export default function SubscriberRow({ subscriber }: SubscriberRowProps) {
               {initials}
             </div>
             <div>
-              <div className="font-medium text-white">{subscriber.name || "—"}</div>
+              <div className="font-medium text-white">{subscriber.cardholderName || "—"}</div>
               <div className="text-xs text-gray-400">{subscriber.payer_email || "Sem Email"}</div>
             </div>
           </div>

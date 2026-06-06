@@ -23,6 +23,7 @@ interface UsageMetrics {
   outputTokens?: number;
   totalTokens?: number;
   costBrl?: number;
+  totalRequest?: number;
 }
 interface AttributesCognito {
   name: string;

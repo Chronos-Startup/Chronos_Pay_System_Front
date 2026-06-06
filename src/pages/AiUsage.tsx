@@ -1,4 +1,4 @@
-import { DollarSign, TrendingUp, Cpu, Sparkles } from "lucide-react";
+import { DollarSign, TrendingUp, Cpu, Sparkles, Activity } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { PageLayout } from "../layout/Page";
 import { Card } from "../components/Cards";
@@ -7,6 +7,7 @@ import TextUppercase from "../components/TextUppercase";
 
 export default function AiUsagePage() {
   const { user } = useAuth();
+  console.log(user)
   return (
     <PageLayout.Root>
       <PageLayout.Header>
@@ -20,7 +21,6 @@ export default function AiUsagePage() {
 
       {/* Stats Summary cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
         {/* Total Cost card */}
         <Card.Root>
           <Card.Header>
@@ -31,7 +31,6 @@ export default function AiUsagePage() {
             <span className="text-3xl font-display font-medium text-white">{formatCurrency(user?.costBrl ?? 0)}</span>
           </div>
         </Card.Root>
-
 
         <Card.Root>
           <Card.Header>
@@ -46,11 +45,20 @@ export default function AiUsagePage() {
           </div>
         </Card.Root>
 
+        <Card.Root>
+          <Card.Header>
+            <Card.Icon icon={Activity} color="green" />
+            <Card.Title>Requisições</Card.Title>
+          </Card.Header>
+          <div className="text-3xl font-display font-medium text-white">{user?.totalRequest}</div>
+          <p className="text-[10px] text-emerald-400 mt-2 font-bold uppercase tracking-wider">Taxa de sucesso: 100%</p>
+        </Card.Root>
+
         {/* Tokens consumed card */}
       </div>
 
       {/* Cost Formula Explanation */}
-      <section className="glass-card max-w-3xl p-8 rounded-3xl border border-white/5 lg:col-span-2 space-y-6">
+      <section className="glass-card max-w-6xl p-8 rounded-3xl border border-white/5 lg:col-span-2 space-y-6">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center border border-orange-500/20">
             <Sparkles size={16} className="text-orange-400" />

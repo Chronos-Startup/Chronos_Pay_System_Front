@@ -26,7 +26,7 @@ export default function PlanPage() {
       {/* Loading */}
       {isLoading && <LoadingCircle />}
 
-      <div className="w-full grid grid-cols-4 max-md:grid-cols-1 max-lg:grid-cols-2 max-xl:grid-cols-3 gap-6">
+      <div className="w-full grid grid-cols-4 max-md:grid-cols-1 max-lg:grid-cols-2 max-xl:grid-cols-3 gap-6 ">
         {/* Lista de planos */}
         {data && data.length > 0 && (
           <>
@@ -40,7 +40,7 @@ export default function PlanPage() {
         {!isLoading && (
           <button
             onClick={() => setShow(true)}
-            className="border-2 cursor-pointer shadow-chronos hover:bg-primary/5 hover:border-primary/60  transition-all border-dashed border-primary/40 p-6 gap-4 rounded-2xl flex flex-col items-center justify-center"
+            className="border-2 min-h-76 cursor-pointer shadow-chronos hover:bg-primary/5 hover:border-primary/60  transition-all border-dashed border-primary/40 p-6 gap-4 rounded-2xl flex flex-col items-center justify-center"
           >
             <div className="p-3 text-primary bg-primary/10 border border-primary/20 rounded-xl">
               <PlusCircle className="w-5 h-5" />

@@ -15,6 +15,7 @@ import MobileHeader from "./layout/Header";
 import { useState } from "react";
 import { AgentChat } from "./components/Agent/AgentChat";
 import { AgentProvider } from "./context/AgentContext";
+import { NotificationProvider } from "./context/NotificationContext";
 
 Amplify.configure(outputs);
 I18n.setLanguage("pt-BR");
@@ -54,20 +55,22 @@ export default function App() {
       <Authenticator className="p-6" formFields={formFields} components={components}>
         {({ user, signOut }) => (
           <AuthProvider userCognito={user}>
-            <BrowserRouter>
-              <QueryClientProvider client={queryClient}>
-                <main className="w-full flex items-end justify-end">
-                  <Sidebar isOpen={isSidebarOpen} logOut={signOut} onClose={() => setIsSidebarOpen(false)} />
-                  <div className="w-full overflow-x-hidden xl:ml-72">
-                    <MobileHeader setIsSidebarOpen={() => setIsSidebarOpen(true)} />
-                    <AppRoutes user={user} signOut={signOut} />
-                  </div>
-                  <AgentProvider>
-                    <AgentChat />
-                  </AgentProvider>
-                </main>
-              </QueryClientProvider>
-            </BrowserRouter>
+            <NotificationProvider>
+              <BrowserRouter>
+                <QueryClientProvider client={queryClient}>
+                  <main className="w-full flex items-end justify-end">
+                    <Sidebar isOpen={isSidebarOpen} logOut={signOut} onClose={() => setIsSidebarOpen(false)} />
+                    <div className="w-full overflow-x-hidden xl:ml-72">
+                      <MobileHeader setIsSidebarOpen={() => setIsSidebarOpen(true)} />
+                      <AppRoutes user={user} signOut={signOut} />
+                    </div>
+                    <AgentProvider>
+                      <AgentChat />
+                    </AgentProvider>
+                  </main>
+                </QueryClientProvider>
+              </BrowserRouter>
+            </NotificationProvider>
           </AuthProvider>
         )}
       </Authenticator>
