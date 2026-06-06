@@ -68,7 +68,7 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
         setNotifications((prev) => [...prev, notif]);
 
         // Auto-remove após 6 segundos
-        setTimeout(() => removeNotification(notif.id), 6000);
+        setTimeout(() => removeNotification(notif.id), 10000);
       };
 
       ws.onclose = () => {
@@ -98,7 +98,7 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
 
       {/* Notificações WebSocket — renderizadas via portal no body */}
       {createPortal(
-        <div className="fixed top-4 right-4 z-[9999] flex flex-col gap-3 w-full max-w-sm pointer-events-none">
+        <div className="fixed top-4 right-4 z-9999 flex flex-col gap-3 w-full max-w-[90vw] pointer-events-none">
           <AnimatePresence mode="popLayout">
             {notifications.map((notif) => (
               <div key={notif.id} className="pointer-events-auto">

@@ -55,7 +55,7 @@ export default function NotificationRoot({
         exit={{ opacity: 0, y: -8, scale: 0.98 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
         className={`
-          relative overflow-hidden rounded-xl border-l-4
+          relative overflow-hidden  rounded-xl border-l-4
           border border-white/5 backdrop-blur-md
           p-4 flex items-start gap-3
           ${typeStyles[type]}
