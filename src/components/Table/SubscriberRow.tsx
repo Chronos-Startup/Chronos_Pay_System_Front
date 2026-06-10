@@ -1,7 +1,7 @@
 import { Table } from ".";
-import { formatDate } from "../../utils/DateUtils";
-import { getInitialChar, truncateString } from "../../utils/StringUtils";
-import StatusBadge from "../statusBadge";
+import { formatDate } from "@utils/DateUtils";
+import { getInitialChar, truncateString } from "@utils/StringUtils";
+import StatusBadge from "@components/statusBadge";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 

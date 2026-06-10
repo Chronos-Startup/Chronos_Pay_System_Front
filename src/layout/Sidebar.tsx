@@ -2,10 +2,10 @@ import { AlertCircle, CircleUser, Clock, Cpu, CreditCard, LogOut, Receipt, Setti
 import { AnimatePresence, motion } from "motion/react";
 import { ElementType, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { truncateString } from "../utils/StringUtils";
+import { useAuth } from "@context/AuthContext";
+import { truncateString } from "@utils/StringUtils";
 import { twMerge } from "tailwind-merge";
-import { Skeleton } from "../components/Skeleton";
+import { Skeleton } from "@components/Skeleton";
 
 interface SidebarItemProps {
   icon: ElementType;
@@ -50,10 +50,11 @@ export default function Sidebar({ isOpen, onClose, logOut }: SidebarProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { mpConnected, isLoading, user } = useAuth();
+
   const activeView = pathname;
   useEffect(() => {
     onClose();
-  }, [pathname]);
+  }, [pathname, onClose]);
 
   return (
     <>

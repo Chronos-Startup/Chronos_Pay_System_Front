@@ -1,5 +1,5 @@
 import { ArrowLeft } from "lucide-react";
-import { Button } from "../components/Button";
+import { Button } from "@components/Button";
 
 export default function ErrorPage() {
   return (

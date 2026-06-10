@@ -1,15 +1,15 @@
 import { CreditCard, FileText, Receipt, User, X } from "lucide-react";
 import PaymentMethodBadge from "./PaymentMethodBadge";
 import TransactionModalField from "./TransactionModalField";
-import { formatCurrency, formatDocument } from "../utils/StringUtils";
+import { formatCurrency, formatDocument } from "@utils/StringUtils";
 import { motion } from "motion/react";
 import { PaymentResponse } from "mercadopago/dist/clients/payment/commonTypes";
-import TextUppercase from "./TextUppercase";
-import StatusBadge from "./statusBadge";
-import { errorMap, stylesStatus } from "../constants/constants";
-import { Button } from "./Button";
-import { formatDate } from "../utils/DateUtils";
-import { Modal } from "./Modal";
+import TextUppercase from "@components/TextUppercase";
+import StatusBadge from "@components/statusBadge";
+import { errorMap, stylesStatus } from "@constants/constants";
+import { Button } from "@components/Button";
+import { formatDate } from "@utils/DateUtils";
+import { Modal } from "@components/Modal";
 interface TransactionModalProps {
   transaction: PaymentResponse;
   setShow: (value: boolean) => void;

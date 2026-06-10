@@ -1,6 +1,6 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { AuthContextData, AuthUserDynamo } from "../types/UserType";
-import { getUser } from "../api/Users";
+import { createContext, useContext, useState, useEffect, ReactNode, useCallback, useMemo } from "react";
+import { AuthContextData, AuthUserDynamo } from "@typings/UserType";
+import { getUser } from "@api/Users";
 import { AuthUser, fetchUserAttributes, updateUserAttributes } from "aws-amplify/auth";
 import { toast } from "sonner";
 
@@ -46,7 +46,7 @@ export function AuthProvider({ children, userCognito }: { children: ReactNode; u
     loadUser();
   }, [userCognito?.userId]);
 
-  async function updateUser(data: Partial<AuthUserDynamo>) {
+  const updateUser = useCallback(async (data: Partial<AuthUserDynamo>) => {
     try {
       setIsLoading(true);
       await updateUserAttributes({
@@ -61,9 +61,14 @@ export function AuthProvider({ children, userCognito }: { children: ReactNode; u
     } finally {
       setIsLoading(false); // sempre executa — sucesso ou erro
     }
-  }
+  }, []);
 
-  return <AuthContext.Provider value={{ user, isLoading, mpConnected, updateUser }}>{children}</AuthContext.Provider>;
+  const value = useMemo(
+    () => ({ user, isLoading, mpConnected, updateUser }),
+    [user, isLoading, mpConnected, updateUser],
+  );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {

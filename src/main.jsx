@@ -1,10 +1,9 @@
-import { StrictMode, lazy, Suspense } from "react";
+import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { ThemeProvider, defaultTheme } from "@aws-amplify/ui-react";
 import App from "./App";
-
-const Toaster = lazy(() => import("sonner").then((m) => ({ default: m.Toaster })));
+import { Toaster } from "sonner";
 
 const theme = {
   ...defaultTheme,

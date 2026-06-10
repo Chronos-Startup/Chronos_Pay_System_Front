@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRef } from "react";
-import { fetchTransactionsWithPagination } from "../api/fetchTransactions";
-import { fetchPlans } from "../api/plans";
+import { fetchTransactionsWithPagination } from "@api/fetchTransactions";
 
 interface UseTransactionsProps {
   page: number;

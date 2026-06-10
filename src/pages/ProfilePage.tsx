@@ -1,14 +1,14 @@
 import { Building2, Save, Trash, Upload } from "lucide-react";
-import { Button } from "../components/Button";
-import { useAuth } from "../context/AuthContext";
+import { Button } from "@components/Button";
+import { useAuth } from "@context/AuthContext";
 import { useEffect, useRef } from "react";
-import { useImageUpload } from "../utils/HandleImageChange";
-import ButtonIcon from "../components/Button/ButtonIcon";
+import { useImageUpload } from "@utils/HandleImageChange";
+import ButtonIcon from "@components/Button/ButtonIcon";
 import { useForm } from "react-hook-form";
-import { AuthUserDynamo } from "../types/UserType";
-import InputField from "../components/InputField";
-import TextUppercase from "../components/TextUppercase";
-import { PageLayout } from "../layout/Page";
+import { AuthUserDynamo } from "@typings/UserType";
+import InputField from "@components/InputField";
+import TextUppercase from "@components/TextUppercase";
+import { PageLayout } from "@layout/Page";
 
 export default function ProfilePage() {
   const { user, updateUser } = useAuth();

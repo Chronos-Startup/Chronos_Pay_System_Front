@@ -1,10 +1,10 @@
 import { Users } from "lucide-react";
 import { useParams } from "react-router-dom";
-import { InfoNote } from "../components/InfoNote";
-import { useSubscribers } from "../hooks/useSubscribers";
-import { Table } from "../components/Table";
-import LoadingCircle from "../components/LoadingCircle";
-import { PageLayout } from "../layout/Page";
+import { InfoNote } from "@components/InfoNote";
+import { useSubscribers } from "@hooks/useSubscribers";
+import { Table } from "@components/Table";
+import LoadingCircle from "@components/LoadingCircle";
+import { PageLayout } from "@layout/Page";
 
 type Subscriber = {
   id: string;

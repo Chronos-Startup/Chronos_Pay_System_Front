@@ -1,4 +1,4 @@
-import { labels, stylesStatus } from "../constants/constants";
+import { labels, stylesStatus } from "@constants/constants";
 
 type Status = keyof typeof stylesStatus;
 

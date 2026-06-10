@@ -1,8 +1,9 @@
 import { Sparkles, User } from "lucide-react";
 import { motion } from "motion/react";
-import { useAgent } from "../../context/AgentContext";
-import { useEffect, useRef } from "react";
+import { useAgent } from "@context/AgentContext";
+import { memo, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
+import { Message } from "./AgentChat";
 
 export function AgentMessages() {
   const { isMinimized, messages, isLoading } = useAgent();
@@ -17,6 +18,12 @@ export function AgentMessages() {
   }, [messages]);
 
   if (isMinimized) return null;
+
+  const MessageBubble = memo(({ message }: { message: Message }) => (
+    <div className="markdown-body text-xs wrap-break-word overflow-hidden min-w-0 w-full">
+      <ReactMarkdown>{message.text}</ReactMarkdown>
+    </div>
+  ));
 
   return (
     <motion.div
@@ -51,9 +58,7 @@ export function AgentMessages() {
                   : "bg-white/5 text-text-gray border border-white/5 rounded-tl-none leading-relaxed"
               }`}
             >
-              <div className="markdown-body text-xs wrap-break-word overflow-hidden min-w-0 w-full">
-                <ReactMarkdown>{m.text}</ReactMarkdown>
-              </div>
+              <MessageBubble message={m} />
             </div>
           </div>
         </motion.div>

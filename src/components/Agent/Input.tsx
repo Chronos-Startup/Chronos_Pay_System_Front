@@ -1,6 +1,6 @@
 import { Send } from "lucide-react";
 import { useState } from "react";
-import { useAgent } from "../../context/AgentContext";
+import { useAgent } from "@context/AgentContext";
 
 export function AgentInput() {
   const [input, setInput] = useState<string>("");

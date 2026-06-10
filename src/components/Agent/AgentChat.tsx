@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { AgentInput } from "./Input";
 import { AgentHeader } from "./Header";
 import { AgentMessages } from "./Messages";
-import { useAgent } from "../../context/AgentContext";
+import { useAgent } from "@context/AgentContext";
 
 export interface Message {
   id?: string;

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { createPlan, fetchPlans, updatePlanById } from "../api/plans";
+import { createPlan, fetchPlans, updatePlanById } from "@api/plans";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { planSchema } from "../schemas/planSchema";
+import { planSchema } from "@schemas/planSchema";
 import { z } from "zod";
 import { PreApprovalPlanResponse } from "mercadopago/dist/clients/preApprovalPlan/commonTypes";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 type Plan = z.infer<typeof planSchema>;
 export function useCreatePlan() {
@@ -15,11 +15,12 @@ export function useCreatePlan() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<Plan>({ resolver: zodResolver(planSchema), defaultValues: { auto_recurring: { frequency: 1 } } });
+  const queryClient = useQueryClient();
 
   async function onSubmit(data: Plan) {
     if (!showFreeTrial || !data.auto_recurring.free_trial?.frequency) data.auto_recurring.free_trial = undefined;
     await createPlan?.(data);
-    window.location.reload();
+    queryClient.invalidateQueries({ queryKey: ["plans"] });
   }
 
   return {
@@ -51,6 +52,7 @@ export function usePlans() {
 export function useUpdatePlan(plan: PreApprovalPlanResponse) {
   const isFreeTrial = !!plan?.auto_recurring?.free_trial?.frequency;
   const [showFreeTrial, setShowFreeTrial] = useState<boolean>(isFreeTrial);
+  const queryClient = useQueryClient();
 
   const {
     register,
@@ -62,8 +64,7 @@ export function useUpdatePlan(plan: PreApprovalPlanResponse) {
     if (!showFreeTrial || !data.auto_recurring!.free_trial?.frequency) data.auto_recurring!.free_trial = undefined;
 
     await updatePlanById?.(data.id!, data);
-    const { refetch } = usePlans();
-    refetch();
+    queryClient.invalidateQueries({ queryKey: ["plans"] });
   }
 
   return {

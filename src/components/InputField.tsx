@@ -1,5 +1,5 @@
 import { forwardRef, InputHTMLAttributes } from "react";
-import TextUppercase from "../components/TextUppercase";
+import TextUppercase from "./TextUppercase";
 import { twMerge } from "tailwind-merge";
 import { ShieldAlert } from "lucide-react";
 

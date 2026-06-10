@@ -1,12 +1,12 @@
 import { Check, ChevronDown, Loader2 } from "lucide-react";
 import InputField from "../InputField";
-import { TIME_UNITS_LABELS } from "../../constants/constants";
+import { TIME_UNITS_LABELS } from "@constants/constants";
 import { motion } from "motion/react";
 import { Select } from "../Select";
 import { InfoNote } from "../InfoNote";
 import { SwitchCheckBox } from "../SwitchCheckBox";
 import { Button } from "../Button";
-import { useCreatePlan } from "../../hooks/usePlans";
+import { useCreatePlan } from "@hooks/usePlans";
 
 interface ModalCreatePlanProps {
   onClose: () => void;

@@ -1,13 +1,13 @@
 import { AuthUser } from "aws-amplify/auth";
 import { useEffect, lazy, Suspense } from "react";
 import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
-const LoadingPage = lazy(() => import("../pages/LoadingPage"));
-const SettingsPage = lazy(() => import("../pages/SettingsPage"));
-const Transactions = lazy(() => import("../pages/Transactions"));
-const ProfilePage = lazy(() => import("../pages/ProfilePage"));
-const PlanPage = lazy(() => import("../pages/PlanPage"));
-const SubscribersPlanPage = lazy(() => import("../pages/SubscribersPlanPage"));
-const AiUsage = lazy(() => import("../pages/AiUsage"));
+const LoadingPage = lazy(() => import("@pages/LoadingPage"));
+const SettingsPage = lazy(() => import("@pages/SettingsPage"));
+const Transactions = lazy(() => import("@pages/Transactions"));
+const ProfilePage = lazy(() => import("@pages/ProfilePage"));
+const PlanPage = lazy(() => import("@pages/PlanPage"));
+const SubscribersPlanPage = lazy(() => import("@pages/SubscribersPlanPage"));
+const AiUsage = lazy(() => import("@pages/AiUsage"));
 
 export default function AppRoutes({ user, signOut }: { user?: AuthUser; signOut?: () => void }) {
   const navigate = useNavigate();

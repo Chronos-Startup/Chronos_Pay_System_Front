@@ -12,7 +12,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { I18n } from "aws-amplify/utils";
 import Sidebar from "./layout/Sidebar";
 import MobileHeader from "./layout/Header";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { AgentChat } from "./components/Agent/AgentChat";
 import { AgentProvider } from "./context/AgentContext";
 import { NotificationProvider } from "./context/NotificationContext";
@@ -50,6 +50,8 @@ const queryClient = new QueryClient();
 
 export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const handleCloseSidebar = useCallback(() => setIsSidebarOpen(false), []);
+  const handleOpenSidebar = useCallback(() => setIsSidebarOpen(true), []);
   return (
     <div className="tech-grid h-full min-h-screen flex items-center justify-center">
       <Authenticator className="p-6" formFields={formFields} components={components}>
@@ -59,9 +61,9 @@ export default function App() {
               <BrowserRouter>
                 <QueryClientProvider client={queryClient}>
                   <main className="w-full flex items-end justify-end">
-                    <Sidebar isOpen={isSidebarOpen} logOut={signOut} onClose={() => setIsSidebarOpen(false)} />
+                    <Sidebar isOpen={isSidebarOpen} logOut={signOut} onClose={handleCloseSidebar} />
                     <div className="w-full overflow-x-hidden xl:ml-72">
-                      <MobileHeader setIsSidebarOpen={() => setIsSidebarOpen(true)} />
+                      <MobileHeader setIsSidebarOpen={handleOpenSidebar} />
                       <AppRoutes user={user} signOut={signOut} />
                     </div>
                     <AgentProvider>

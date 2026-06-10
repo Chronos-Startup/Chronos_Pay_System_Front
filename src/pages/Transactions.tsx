@@ -1,13 +1,13 @@
 import { ArrowLeft, ArrowRight, ArrowUpDown, Search } from "lucide-react";
-import { Button } from "../components/Button";
-import { Table } from "../components/Table";
-import { useTransactions } from "../hooks/useTransactions";
+import { Button } from "@components/Button";
+import { Table } from "@components/Table";
+import { useTransactions } from "@hooks/useTransactions";
 import { useCallback, useState } from "react";
-import { TransactionFilters } from "../types/TransactionFilters";
-import SearchTransactions from "../components/TransactionsPage/SearchTransactions";
-import Filters from "../components/TransactionsPage/Filters";
+import { TransactionFilters } from "@typings/TransactionFilters";
+import SearchTransactions from "@components/TransactionsPage/SearchTransactions";
+import Filters from "@components/TransactionsPage/Filters";
 import { PaymentResponse } from "mercadopago/dist/clients/payment/commonTypes";
-import { PageLayout } from "../layout/Page";
+import { PageLayout } from "@layout/Page";
 export default function Transactions() {
   const [page, setPage] = useState(1);
   const [filterForm, setFilterForm] = useState<TransactionFilters>({});

@@ -1,4 +1,4 @@
-import "../styles/Loader.css";
+import "@styles/Loader.css";
 
 export default function LoadingPage() {
   return (

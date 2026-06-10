@@ -1,5 +1,5 @@
 import { Bot, Maximize2, MinusCircle, X } from "lucide-react";
-import { useAgent } from "../../context/AgentContext";
+import { useAgent } from "@context/AgentContext";
 
 export function AgentHeader() {
   const { isMinimized, setIsMinimized, setIsOpen } = useAgent();

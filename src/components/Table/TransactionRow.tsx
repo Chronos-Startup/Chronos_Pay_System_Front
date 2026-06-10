@@ -1,12 +1,12 @@
 import { PaymentResponse } from "mercadopago/dist/clients/payment/commonTypes";
 import { Table } from ".";
-import { formatDate } from "../../utils/DateUtils";
-import { formatCurrency, getColorFromName, getInitialChar, truncateString } from "../../utils/StringUtils";
-import PaymentMethodBadge from "../PaymentMethodBadge";
-import StatusBadge from "../statusBadge";
+import { formatDate } from "@utils/DateUtils";
+import { formatCurrency, getColorFromName, getInitialChar, truncateString } from "@utils/StringUtils";
+import PaymentMethodBadge from "@components/PaymentMethodBadge";
+import StatusBadge from "@components/statusBadge";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
-import TransactionModal from "../TransactionModal";
+import TransactionModal from "@components/TransactionModal";
 import { Skeleton } from "../Skeleton";
 
 interface TransactionRowProps {
@@ -42,13 +42,12 @@ export default function TransactionRow({ isLoading, transaction }: TransactionRo
   if (!transaction) return null;
 
   const { date, time } = formatDate(transaction?.date_created);
-  
+
   const payerName =
     `${transaction.payer?.first_name || ""} ${transaction.payer?.last_name || ""}`.trim() ||
     transaction.card?.cardholder?.name;
-  
-  const initials = getInitialChar(payerName)?.toUpperCase();
 
+  const initials = getInitialChar(payerName)?.toUpperCase();
 
   return (
     <>

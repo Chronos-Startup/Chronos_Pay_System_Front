@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { AnimatePresence } from "motion/react";
 import { useAuth } from "./AuthContext";
 import { CheckCircle, AlertTriangle, XCircle, Info, Crown, Bell } from "lucide-react";
-import { Notification, NotificationType } from "../components/Notification";
+import { Notification, NotificationType } from "@components/Notification";
 
 interface WsNotification {
   id: string;
@@ -55,7 +55,6 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
 
       ws.onmessage = (e) => {
         const data = JSON.parse(e.data);
-        console.log(data);
 
         const notif: WsNotification = {
           id: crypto.randomUUID(),
@@ -90,7 +89,7 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
       clearTimeout(reconnectTimeout);
       ws?.close();
     };
-  }, [user, removeNotification]);
+  }, [user?.user_id, removeNotification]);
 
   return (
     <NotificationContext.Provider value={{ notifications, removeNotification }}>

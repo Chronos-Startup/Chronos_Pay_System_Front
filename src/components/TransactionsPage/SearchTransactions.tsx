@@ -1,7 +1,7 @@
 import { ChartBarIcon, CreditCard, Search } from "lucide-react";
-import { labels, payment_methods_id } from "../../constants/constants";
-import { Select } from "../Select";
-import { TransactionFilters } from "../../types/TransactionFilters";
+import { labels, payment_methods_id } from "@constants/constants";
+import { Select } from "@components/Select";
+import { TransactionFilters } from "@typings/TransactionFilters";
 import { useEffect, useState } from "react";
 
 interface SearchTransactionProps {

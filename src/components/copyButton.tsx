@@ -1,5 +1,5 @@
 import { Copy, CheckCircle } from "lucide-react";
-import { useClipboard } from "../hooks/useClipboard";
+import { useClipboard } from "@hooks/useClipboard";
 import { ReactNode } from "react";
 
 interface CopyButtonProps {

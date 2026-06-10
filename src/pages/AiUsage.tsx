@@ -1,13 +1,12 @@
 import { DollarSign, TrendingUp, Cpu, Sparkles, Activity } from "lucide-react";
-import { useAuth } from "../context/AuthContext";
-import { PageLayout } from "../layout/Page";
-import { Card } from "../components/Cards";
-import { formatCurrency } from "../utils/StringUtils";
-import TextUppercase from "../components/TextUppercase";
+import { useAuth } from "@context/AuthContext";
+import { PageLayout } from "@layout/Page";
+import { Card } from "@components/Cards";
+import { formatCurrency } from "@utils/StringUtils";
+import TextUppercase from "@components/TextUppercase";
 
 export default function AiUsagePage() {
   const { user } = useAuth();
-  console.log(user)
   return (
     <PageLayout.Root>
       <PageLayout.Header>

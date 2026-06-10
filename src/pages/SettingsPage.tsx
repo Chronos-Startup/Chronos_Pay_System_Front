@@ -1,16 +1,16 @@
 import { ExternalLink, Key, KeyRound } from "lucide-react";
-import { Button } from "../components/Button";
-import { PageLayout } from "../layout/Page";
-import ErrorPage from "./ErrorPage";
-import { fetchOAuthMercadoPago } from "../api/fetchOAuthMercadoPago";
+import { Button } from "@components/Button";
+import { PageLayout } from "@layout/Page";
+import ErrorPage from "@pages/ErrorPage";
+import { fetchOAuthMercadoPago } from "@api/fetchOAuthMercadoPago";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "@context/AuthContext";
 import { AuthUser } from "aws-amplify/auth";
-import LoadingCircle from "../components/LoadingCircle";
-import TextUppercase from "../components/TextUppercase";
-import { truncateString } from "../utils/StringUtils";
-import CopyButton from "../components/copyButton";
+import LoadingCircle from "@components/LoadingCircle";
+import TextUppercase from "@components/TextUppercase";
+import { truncateString } from "@utils/StringUtils";
+import CopyButton from "@components/copyButton";
 
 import MercadoPagoLogo from "/images/MercadoPago_Logo_Horizontal.svg";
 

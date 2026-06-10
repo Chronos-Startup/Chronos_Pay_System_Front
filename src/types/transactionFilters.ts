@@ -1,4 +1,4 @@
-import { stylesStatus } from "../constants/constants";
+import { stylesStatus } from "@constants/constants";
 
 export interface TransactionFilters {
   name?: string;

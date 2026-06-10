@@ -1,6 +1,6 @@
 import { Bot } from "lucide-react";
 import { motion } from "motion/react";
-import { useAgent } from "../../context/AgentContext";
+import { useAgent } from "@context/AgentContext";
 
 export function AgentButton() {
   const { setIsOpen } = useAgent();

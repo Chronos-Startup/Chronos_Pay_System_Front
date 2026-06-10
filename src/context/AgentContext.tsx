@@ -1,6 +1,6 @@
-import { createContext, useContext, ReactNode, useState, useEffect } from "react";
-import { Message } from "../components/Agent/AgentChat";
-import sendMessageAgent from "../Agent/agentStream";
+import { createContext, useContext, ReactNode, useState, useEffect, useCallback, useMemo } from "react";
+import { Message } from "@components/Agent/AgentChat";
+import sendMessageAgent from "@agent/agentStream";
 import { useAuth } from "./AuthContext";
 
 interface AgentContextData {
@@ -25,7 +25,6 @@ export function AgentProvider({ children }: AgentProviderProps) {
   const { user, isLoading: authIsLoading } = useAuth();
   const [messages, setMessages] = useState<Message[]>([]);
 
-
   useEffect(() => {
     if (!authIsLoading && user) {
       const firstName = user.name.split(" ")[0];
@@ -40,7 +39,7 @@ export function AgentProvider({ children }: AgentProviderProps) {
   }, [authIsLoading, user]);
 
   //enviar uma nova mensagem para o agente
-  const onSend = async (message: string) => {
+  const onSend = useCallback(async (message: string) => {
     try {
       setIsLoading(true);
       setMessages((prev) => [...prev, { role: "user", text: message }]);
@@ -50,15 +49,23 @@ export function AgentProvider({ children }: AgentProviderProps) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
-  return (
-    <AgentContext.Provider
-      value={{ isLoading, isMinimized, isOpen, messages, setIsMinimized, setIsOpen, setMessages, onSend }}
-    >
-      {children}
-    </AgentContext.Provider>
+  const value = useMemo(
+    () => ({
+      isLoading,
+      isMinimized,
+      isOpen,
+      messages,
+      setIsMinimized,
+      setIsOpen,
+      setMessages,
+      onSend,
+    }),
+    [isLoading, isMinimized, isOpen, messages, setIsMinimized, setIsOpen, setMessages, onSend],
   );
+
+  return <AgentContext.Provider value={value}>{children}</AgentContext.Provider>;
 }
 
 export function useAgent() {
